@@ -1,0 +1,15 @@
+- hosts: localhost
+  vars:
+      file_name: inventory
+
+  tasks:
+    - name: Test that my module works
+      github_repo:
+      register: result
+
+    - name: Debugging result of my module
+      debug: var=result
+
+    - name: Copy inventory file into /tmp/
+      copy: src={{file_name}}
+            dest=/tmp/{{file_name}}
