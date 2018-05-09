@@ -1,14 +1,22 @@
-- hosts: localhost
+# playbook defines a set of tasks to be run on hosts.
+-
+  name: playbook demo
+  hosts: localhost
   vars:
       file_name: inventory
 
+  # create tasks (list of dictionaries).
   tasks:
+    # a tasks is an action to be performed on the hosts.
     - name: Test that my module works
       github_repo:
       register: result
 
     - name: Debugging result of my module
       debug: var=result
+
+    - name: Execute the command "date"
+      command: date
 
     - name: Copy inventory file into /tmp/
       copy: src={{file_name}}
