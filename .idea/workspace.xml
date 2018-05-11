@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="497b5c50-40f7-45ea-a56a-f52f9dbd381c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ansible-dev" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitmodules" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/tests/test_time_now.py" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/demo/library/time_now.py" afterPath="$PROJECT_DIR$/demo/library/fetch_resources.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/library/fetch_resources.py" afterPath="$PROJECT_DIR$/demo/library/fetch_resources.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/test/test_fetch_resources.py" afterPath="$PROJECT_DIR$/demo/test/test_fetch_resources.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,30 +17,18 @@
       <file leaf-file-name="fetch_resources.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/demo/library/fetch_resources.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="20" column="10" lean-forward="false" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
+            <state relative-caret-position="180">
+              <caret line="10" column="28" lean-forward="false" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_fetch_resources.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="test_fetch_resources.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/demo/test/test_fetch_resources.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="5" column="47" lean-forward="false" selection-start-line="5" selection-start-column="47" selection-end-line="5" selection-end-column="47" />
-              <folding>
-                <element signature="e#23#38#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+            <state relative-caret-position="126">
+              <caret line="7" column="35" lean-forward="true" selection-start-line="7" selection-start-column="35" selection-end-line="7" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -85,10 +68,10 @@
         <option value="$PROJECT_DIR$/demo/library/time_now.py" />
         <option value="$PROJECT_DIR$/demo/test_folder/test_time_now.py" />
         <option value="$PROJECT_DIR$/demo/test_folder/test_sample.py" />
-        <option value="$PROJECT_DIR$/demo/library/fetch_resources.py" />
         <option value="$PROJECT_DIR$/demo/test_folder/test_fetch_resources.py" />
-        <option value="$PROJECT_DIR$/demo/test/test_fetch_resources.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/demo/library/fetch_resources.py" />
+        <option value="$PROJECT_DIR$/demo/test/test_fetch_resources.py" />
       </list>
     </option>
   </component>
@@ -187,7 +170,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests in test_fetch_resources.py">
+  <component name="RunManager" selected="Python.test_fetch_resources">
     <configuration name="Unittests in test_fetch_resources.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -219,14 +202,33 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
-    <list size="2">
+    <configuration name="test_fetch_resources" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/demo/test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ansible" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/demo/test/test_fetch_resources.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+    </configuration>
+    <list size="3">
       <item index="0" class="java.lang.String" itemvalue="Python.hdfs_demo" />
       <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in test_fetch_resources.py" />
+      <item index="2" class="java.lang.String" itemvalue="Python.test_fetch_resources" />
     </list>
     <recent_temporary>
-      <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in test_fetch_resources.py" />
-        <item index="1" class="java.lang.String" itemvalue="Python.hdfs_demo" />
+      <list size="3">
+        <item index="0" class="java.lang.String" itemvalue="Python.test_fetch_resources" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in test_fetch_resources.py" />
+        <item index="2" class="java.lang.String" itemvalue="Python.hdfs_demo" />
       </list>
     </recent_temporary>
   </component>
@@ -244,6 +246,9 @@
     <servers />
   </component>
   <component name="TestHistory">
+    <history-entry file="Unittests_in_test_fetch_resources_py - 2018.05.11 at 17h 44m 44s.xml">
+      <configuration name="Unittests in test_fetch_resources.py" configurationId="tests" />
+    </history-entry>
     <history-entry file="Unittests_in_test_time_now_py - 2018.05.11 at 16h 50m 26s.xml">
       <configuration name="Unittests in test_time_now.py" configurationId="tests" />
     </history-entry>
@@ -604,28 +609,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/demo/library/fetch_resources.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="20" column="10" lean-forward="false" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
+        <state relative-caret-position="180">
+          <caret line="10" column="28" lean-forward="false" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/demo/test/test_fetch_resources.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="47" lean-forward="false" selection-start-line="5" selection-start-column="47" selection-end-line="5" selection-end-column="47" />
-          <folding>
-            <element signature="e#23#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+        <state relative-caret-position="126">
+          <caret line="7" column="35" lean-forward="true" selection-start-line="7" selection-start-column="35" selection-end-line="7" selection-end-column="35" />
           <folding />
         </state>
       </provider>

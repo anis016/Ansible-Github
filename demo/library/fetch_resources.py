@@ -8,6 +8,7 @@ def save_data(mod):
     raise NotImplementedError
 
 def main():
+    print "Calling something"
     mod = AnsibleModule(
         argument_spec=dict(
             url = dict(required=True),
