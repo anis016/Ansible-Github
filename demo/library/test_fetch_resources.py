@@ -7,8 +7,8 @@ import fetch_resources as fetch_resources
 
 class TestFetchResource(unittest.TestCase):
 
-    @patch('fetch_resources.write')
     @patch('fetch_resources.fetch')
+    @patch('fetch_resources.write')
     def test_save_data_path(self, fetch, write):
         # Setup
         mod_cls = create_autospec(AnsibleModule)
