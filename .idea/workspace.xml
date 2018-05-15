@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f2214dad-e8a3-4498-ba86-ffe083226f80" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ansible-dev" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitmodules" afterPath="$PROJECT_DIR$/.gitmodules" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/ansible.iml" afterPath="$PROJECT_DIR$/.idea/ansible.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/library/fetch_resources.py" afterPath="$PROJECT_DIR$/demo/library/fetch_resources.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/library/test_fetch_resources.py" afterPath="$PROJECT_DIR$/demo/library/test_fetch_resources.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,13 +15,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="fetch_resources.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/demo/library/fetch_resources.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="246">
+              <caret line="32" column="52" lean-forward="false" selection-start-line="32" selection-start-column="52" selection-end-line="32" selection-end-column="52" />
+              <folding>
+                <element signature="e#106#158#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="test_fetch_resources.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/demo/library/test_fetch_resources.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="264">
+              <caret line="62" column="16" lean-forward="false" selection-start-line="62" selection-start-column="16" selection-end-line="62" selection-end-column="36" />
               <folding>
-                <element signature="e#23#38#0" expanded="true" />
+                <element signature="e#107#122#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -33,6 +43,15 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/demo/library/fetch_resources.py" />
+        <option value="$PROJECT_DIR$/demo/library/test_fetch_resources.py" />
+        <option value="$PROJECT_DIR$/ansible_venv/lib/python2.6/site-packages/mock/mock.py" />
+      </list>
+    </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="641" />
@@ -136,6 +155,27 @@
     <history-entry file="Nosetests_in_test_fetch_resources_py - 2018.05.15 at 15h 14m 04s.xml">
       <configuration name="Nosetests in test_fetch_resources.py" configurationId="tests" />
     </history-entry>
+    <history-entry file="Nosetests_in_test_fetch_resources_py - 2018.05.15 at 15h 19m 22s.xml">
+      <configuration name="Nosetests in test_fetch_resources.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_in_test_fetch_resources_py - 2018.05.15 at 15h 20m 58s.xml">
+      <configuration name="Nosetests in test_fetch_resources.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_in_test_fetch_resources_py - 2018.05.15 at 15h 41m 50s.xml">
+      <configuration name="Nosetests in test_fetch_resources.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_in_test_fetch_resources_py - 2018.05.15 at 15h 45m 28s.xml">
+      <configuration name="Nosetests in test_fetch_resources.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_in_test_fetch_resources_py - 2018.05.15 at 15h 47m 48s.xml">
+      <configuration name="Nosetests in test_fetch_resources.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_in_test_fetch_resources_py - 2018.05.15 at 15h 47m 51s.xml">
+      <configuration name="Nosetests in test_fetch_resources.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_in_test_fetch_resources_py - 2018.05.15 at 15h 53m 38s.xml">
+      <configuration name="Nosetests in test_fetch_resources.py" configurationId="tests" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="51" y="-4" width="1869" height="1084" extended-state="6" />
@@ -164,7 +204,9 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="3" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
@@ -176,12 +218,46 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/demo/library/test_fetch_resources.py">
+    <entry file="file://$PROJECT_DIR$/.gitmodules">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/library/fetch_resources.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="32" column="52" lean-forward="false" selection-start-line="32" selection-start-column="52" selection-end-line="32" selection-end-column="52" />
           <folding>
-            <element signature="e#23#38#0" expanded="true" />
+            <element signature="e#106#158#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ansible_venv/lib/python2.6/site-packages/mock/mock.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="61" column="4" lean-forward="false" selection-start-line="61" selection-start-column="4" selection-end-line="61" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/library/test_fetch_resources.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="62" column="16" lean-forward="false" selection-start-line="62" selection-start-column="16" selection-end-line="62" selection-end-column="36" />
+          <folding>
+            <element signature="e#107#122#0" expanded="true" />
           </folding>
         </state>
       </provider>
