@@ -18,7 +18,7 @@ class TestFetchResource(unittest.TestCase):
         mod = mod_cls.return_value
         mod.params = dict(
             url="https://www.google.com",
-            dest="/tmp/firstmod.txt"
+            dest="/tmp/testAnsible.txt"
         )
 
         # Exercise

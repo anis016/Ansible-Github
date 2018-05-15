@@ -3,6 +3,10 @@
 # set "dfs.namenode.acls.enabled=true" to enable support for ACLs in hdfs-site.xml
 from hdfs import InsecureClient, HdfsError
 import os
+from ansible.module_utils.basic import AnsibleModule
+
+def print_something(mod):
+    print mod
 
 ### listing ###
 def list_files(hdfs_client, hdfs_path=None, recursive=False):
@@ -146,9 +150,30 @@ def make_dirs(hdfs_client, hdfs_path):
         print "new directory created."
 
 if __name__ == '__main__':
-    hdfs_client = InsecureClient('http://sandbox.hortonworks.com:50070', user='sayed')
-    hdfs_path = "/tmp/dqjob"
-    local_path = "/home/sayed/kernel_cleaner.sh"
+    pass
+
+    # module = AnsibleModule(
+    #     argument_spec=dict(
+    #         namenode_host=dict(required=True, type='str'),
+    #         namenode_port=dict(required=False, default=8020, type='int'),
+    #         effective_user=dict(required=False, default=None, type='str'),
+    #         state=dict(choices=['file', 'directory', 'touchz', 'absent'], default=None),
+    #         path=dict(aliases=['dest', 'name'], required=True, type='path'),
+    #         mode=dict(required=False, default=None, type='raw'),
+    #         owner=dict(required=False, default=None, type='str'),
+    #         group=dict(required=False, default=None, type='str'),
+    #         original_basename=dict(required=False),  # Internal use only, for recursive ops
+    #         recurse=dict(default=False, type='bool'),
+    #         diff_peek=dict(default=None),  # Internal use only, for internal checks in the action plugins
+    #         validate=dict(required=False, default=None),  # Internal use only, for template and copy
+    #         src=dict(required=False, default=None, type='path'),
+    #     ),
+    #     supports_check_mode=True
+    # )
+
+    # hdfs_client = InsecureClient('http://sandbox.hortonworks.com:50070', user='sayed')
+    # hdfs_path = "/tmp/dqjob"
+    # local_path = "/home/sayed/kernel_cleaner.sh"
 
     # files = list_files(hdfs_client, hdfs_path, recursive=True)
     # print files

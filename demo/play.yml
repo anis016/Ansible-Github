@@ -8,5 +8,7 @@
   # create tasks (list of dictionaries).
   tasks:
     # a tasks is an action to be performed on the hosts.
-    - name: Test that my module works
-      hdfs_ansible:
+    - name: Fetch resources and write in the file
+      fetch_resources:
+        url: https://www.google.com
+        dest: /tmp/testAnsible.txt

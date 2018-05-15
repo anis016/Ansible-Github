@@ -5,14 +5,16 @@ from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.urls import open_url
 from urllib2 import URLError
 
+class FetchError(Exception):
+    pass
+
+class WriteError(Exception):
+    pass
+
 def save_data(mod):
     data = fetch(mod.params["url"])
     write(data, mod.params["dest"])
     mod.exit_json(msg="Data saved", changed=True)
-
-
-class FetchError(Exception):
-    pass
 
 def fetch(url):
     try:
@@ -20,10 +22,6 @@ def fetch(url):
         return stream.read()
     except URLError:
         raise FetchError("Data could not be fetched.")
-
-
-class WriteError(Exception):
-    pass
 
 def write(data, dest):
     try:
@@ -36,7 +34,7 @@ def main():
     mod = AnsibleModule(
         argument_spec=dict(
             url = dict(required=True),
-            dest = dict(required=False, default='/tmp/save_data')
+            dest = dict(required=False, default='/tmp/testAnsible.txt')
         )
     )
 
