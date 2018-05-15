@@ -1,5 +1,5 @@
-ansible_venv
-.idea
+ansible_venv/
+.idea/
 .idea/workspace.xml
 ansible-dev
 *.pyc
