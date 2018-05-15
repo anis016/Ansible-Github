@@ -5,10 +5,17 @@ from ansible.module_utils.basic import AnsibleModule
 # A module that fetches a resource pointed to by a URL and then writes it to disk.
 
 def save_data(mod):
-    raise NotImplementedError
+    data = fetch(mod.params["url"])
+    write(data, mod.params["dest"])
+    mod.exit_json(msg="Data saved", changed=True)
+
+def fetch(url):
+    print "Fetch something"
+
+def write(data, dest):
+    print "Write the data"
 
 def main():
-    print "Calling something"
     mod = AnsibleModule(
         argument_spec=dict(
             url = dict(required=True),
