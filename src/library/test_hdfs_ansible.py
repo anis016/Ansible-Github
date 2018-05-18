@@ -5,6 +5,9 @@ from hdfs import InsecureClient
 from ansible.module_utils.basic import AnsibleModule
 import hdfs_ansible as hdfs_ansible
 
+"""
+Using Singleton class to instantiate in setUp(). This is done so that, hdfs_client is instantiated only once.
+"""
 class Singleton(object):
     _instance = None
     def __new__(cls, *args, **kwargs):
@@ -14,25 +17,31 @@ class Singleton(object):
         cls.hdfs_path = '/tmp/'
         return cls._instance
 
-class TestHDFSAnsible(unittest.TestCase):
-
-    def setUp(self):
-        self.hdfs_client = Singleton().hdfs_client
-        self.hdfs_path = Singleton().hdfs_path
-
-    @patch('hdfs_ansible.list_files')
-    def test_list_files(self, list_files):
-        mod_cls = create_autospec(AnsibleModule)
-        mod = mod_cls.return_value
-        mod.params = dict(
-            hdfs_client=self.hdfs_client,
-            hdfs_path=self.hdfs_path
-        )
-
-        # Exercise
-        hdfs_ansible.list_files(hdfs_client=self.hdfs_client, hdfs_path=self.hdfs_path, recursive=False)
-
-    @patch('hdfs_ansible.path_exists')
-    def test_path_exists(self, path_exists):
-        print path_exists
+# class TestHDFSAnsible(unittest.TestCase):
+#
+#     def setUp(self):
+#         self.hdfs_client = Singleton().hdfs_client
+#         self.hdfs_path = Singleton().hdfs_path
+#
+#     @patch('hdfs_ansible.list_files')
+#     def test_module_args(self):
+#         """
+#         prefix_check - test module arguments
+#         """
+#         prefix_check.main()
+#         mock_module.assert_called_with(
+#             argument_spec={
+#                 'prefix': {'required': True, 'type': 'str'},
+#                 'timeout': {'type': 'int', 'default': 5},
+#             })
+#
+#     @patch('hdfs_ansible.list_files')
+#     def test_list_files(self, list_files):
+#
+#         # Exercise
+#         all_paths = hdfs_ansible.list_files(hdfs_client=self.hdfs_client, hdfs_path=self.hdfs_path, recursive=False)
+#
+#     @patch('hdfs_ansible.path_exists')
+#     def test_path_exists(self, path_exists):
+#         print path_exists
 

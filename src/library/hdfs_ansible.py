@@ -1,12 +1,13 @@
-#!/usr/bin/python
+#!/usr/bin/python2.6
+
+ANSIBLE_METADATA = {'metadata_version': '1.0',
+                    'status': ['preview'],
+                    'supported_by': 'community'}
 
 # set "dfs.namenode.acls.enabled=true" to enable support for ACLs in hdfs-site.xml
-from hdfs import InsecureClient, HdfsError
+from hdfs import InsecureClient
 import os
 from ansible.module_utils.basic import AnsibleModule
-
-def print_something(mod):
-    print mod
 
 ### listing ###
 def list_files(hdfs_client, hdfs_path=None, recursive=False):
@@ -32,6 +33,16 @@ def list_files(hdfs_client, hdfs_path=None, recursive=False):
 
             return files
 
+def path_exists(hdfs_client, hdfs_path=None):
+    if hdfs_path is None:
+        raise ValueError("hdfs path should not be empty.")
+    try:
+        if hdfs_client.status(hdfs_path):
+            return hdfs_path
+    except:
+        print "'{0}': No such file or directory".format(hdfs_path)
+        return False
+
 ### deleting ###
 def delete(hdfs_client, hdfs_path=None):
     if hdfs_path is None:
@@ -44,15 +55,6 @@ def delete(hdfs_client, hdfs_path=None):
     else:
         return False
 
-def path_exists(hdfs_client, hdfs_path=None):
-    if hdfs_path is None:
-        raise ValueError("hdfs path should not be empty.")
-    try:
-        if hdfs_client.status(hdfs_path):
-            return hdfs_path
-    except:
-        print "'{0}': No such file or directory".format(hdfs_path)
-        return False
 
 ### change the owner ###
 def change_owner(hdfs_client, hdfs_path=None, owner=None):
@@ -149,36 +151,38 @@ def make_dirs(hdfs_client, hdfs_path):
         hdfs_client.makedirs(hdfs_path)
         print "new directory created."
 
+def run(module, hdfs_client):
+    params = module.params
+    command = params['command']
+    recurse = params['recurse']
+    hdfs_path = params["hdfsPath"]
+
+    if command == "ls":
+        module.exit_json(changed=False, hdfs_files=list_files(hdfs_client, hdfs_path=hdfs_path, recursive=recurse))
+
+def main():
+    fields = {
+        "webhdfs_host": {"required": True, "type": "str"},
+        "webhdfs_port": {"required": True, "type": "str"},
+        "effective_user": {"required": True, "default": None, "type": "str"},
+        "recurse": {"default": False, "type": "bool"},
+        "command": {"default": None, "choices": ['ls']},
+        "hdfsPath": {"required": True, "type": "str"},
+        "localPath": {"required": False, "type": "str"},
+    }
+
+    try:
+        module = AnsibleModule(argument_spec=fields)
+        params = module.params
+        web_hdfs_url = params["webhdfs_host"] + ":" + params["webhdfs_port"]
+        user = params["effective_user"]
+
+        hdfs_client = InsecureClient(web_hdfs_url, user=user)
+        run(module, hdfs_client)
+
+    except Exception as e:
+        module.fail_json(msg='Unable to init WEB HDFS client for %s:%s: %s' % (
+            params['webhdfs_port'], params['effective_user'], str(e)))
+
 if __name__ == '__main__':
-    pass
-
-    # module = AnsibleModule(
-    #     argument_spec=dict(
-    #         namenode_host=dict(required=True, type='str'),
-    #         namenode_port=dict(required=False, default=8020, type='int'),
-    #         effective_user=dict(required=False, default=None, type='str'),
-    #         state=dict(choices=['file', 'directory', 'touchz', 'absent'], default=None),
-    #         path=dict(aliases=['dest', 'name'], required=True, type='path'),
-    #         mode=dict(required=False, default=None, type='raw'),
-    #         owner=dict(required=False, default=None, type='str'),
-    #         group=dict(required=False, default=None, type='str'),
-    #         original_basename=dict(required=False),  # Internal use only, for recursive ops
-    #         recurse=dict(default=False, type='bool'),
-    #         diff_peek=dict(default=None),  # Internal use only, for internal checks in the action plugins
-    #         validate=dict(required=False, default=None),  # Internal use only, for template and copy
-    #         src=dict(required=False, default=None, type='path'),
-    #     ),
-    #     supports_check_mode=True
-    # )
-
-    # hdfs_client = InsecureClient('http://sandbox.hortonworks.com:50070', user='sayed')
-    # hdfs_path = "/tmp/dqjob"
-    # local_path = "/home/sayed/kernel_cleaner.sh"
-
-    # files = list_files(hdfs_client, hdfs_path, recursive=True)
-    # print files
-
-    # delete(hdfs_client, hdfs_path)
-
-    # make_dirs(hdfs_client, hdfs_path)
-
+    main()

@@ -1,12 +1,24 @@
 # playbook defines a set of tasks to be run on hosts.
 -
-  name: playbook demo
-  hosts: localhost
-  vars:
-      file_name: inventory
-
-  # create tasks (list of dictionaries).
+  name: hdfs playbook
+  hosts: ubuntu_hosts
+  # create tasks
   tasks:
-    # a tasks is an action to be performed on the hosts.
-    - name: Test that my module works
+    # Install hdfs python library
+    - name: Install hdfs python HDFS client
+      become: yes
+      pip:
+        name: hdfs
+        state: latest
+
+    - name: hdfs list directory
       hdfs_ansible:
+        webhdfs_host: http://127.0.0.1
+        webhdfs_port: 50070
+        effective_user: sayed
+        hdfsPath: /tmp/
+        recurse: False
+        command: ls
+      register: result
+
+    - debug: var=result
