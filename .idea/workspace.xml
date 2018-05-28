@@ -3,10 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="f2214dad-e8a3-4498-ba86-ffe083226f80" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/inventory" afterPath="$PROJECT_DIR$/src/inventory" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/library/hdfs_ansible.py" afterPath="$PROJECT_DIR$/src/library/hdfs_ansible.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/library/test_hdfs_ansible.py" afterPath="$PROJECT_DIR$/src/library/test_hdfs_ansible.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/play.yml" afterPath="$PROJECT_DIR$/src/play.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/play_apt.yml" afterPath="$PROJECT_DIR$/src/play_apt.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/play_yum.yml" afterPath="$PROJECT_DIR$/src/play_yum.yml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,36 +21,61 @@
       <file leaf-file-name="hdfs_ansible.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/library/hdfs_ansible.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="187" column="10" lean-forward="true" selection-start-line="187" selection-start-column="10" selection-end-line="187" selection-end-column="10" />
+            <state relative-caret-position="4794">
+              <caret line="390" column="0" lean-forward="true" selection-start-line="390" selection-start-column="0" selection-end-line="390" selection-end-column="0" />
               <folding>
-                <element signature="e#245#276#0" expanded="true" />
+                <element signature="e#4097#4106#0" expanded="true" />
+                <marker date="1527511691594" expanded="true" signature="4652:4736" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="play.yml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/demo/play.yml">
+      <file leaf-file-name="test_hdfs_ansible.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/library/test_hdfs_ansible.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="13" column="34" lean-forward="false" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
+            <state relative-caret-position="495">
+              <caret line="78" column="37" lean-forward="false" selection-start-line="78" selection-start-column="37" selection-end-line="78" selection-end-column="37" />
+              <folding>
+                <element signature="e#1#32#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="play_apt.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/play_apt.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="99">
+              <caret line="96" column="23" lean-forward="true" selection-start-line="96" selection-start-column="23" selection-end-line="96" selection-end-column="23" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="play.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/play.yml">
+      <file leaf-file-name="play_yum.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/play_yum.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="23" column="23" lean-forward="true" selection-start-line="23" selection-start-column="23" selection-end-line="23" selection-end-column="23" />
+            <state relative-caret-position="72">
+              <caret line="4" column="14" lean-forward="true" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>local</find>
+      <find>PERM_BITS</find>
+      <find>_symbolic_mode_to_octal</find>
+      <find>status</find>
+      <find>status(</find>
+      <find>upload</find>
+      <find>kernel_cleaner.sh</find>
+      <find>mkd</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -60,14 +86,18 @@
         <option value="$PROJECT_DIR$/ansible_venv/lib/python2.6/site-packages/mock/mock.py" />
         <option value="$PROJECT_DIR$/demo/inventory" />
         <option value="$PROJECT_DIR$/demo/library/test_fetch_resources.py" />
-        <option value="$PROJECT_DIR$/src/library/test_hdfs_ansible.py" />
         <option value="$PROJECT_DIR$/demo/library/fetch_resources.py" />
-        <option value="$PROJECT_DIR$/src/inventory" />
         <option value="$PROJECT_DIR$/src/ansible.cfg" />
         <option value="$PROJECT_DIR$/ansible.cfg" />
-        <option value="$PROJECT_DIR$/src/play.yml" />
-        <option value="$PROJECT_DIR$/src/library/hdfs_ansible.py" />
         <option value="$PROJECT_DIR$/demo/play.yml" />
+        <option value="$PROJECT_DIR$/src/play.yml" />
+        <option value="$PROJECT_DIR$/src/inventory" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/play_apt.yml" />
+        <option value="$PROJECT_DIR$/src/play_yum.yml" />
+        <option value="$PROJECT_DIR$/src/library/hdfs_ansible.py" />
+        <option value="$PROJECT_DIR$/src/library/test_hdfs_ansible.py" />
       </list>
     </option>
   </component>
@@ -103,12 +133,13 @@
             <path>
               <item name="ansible" type="b2602c69:ProjectViewProjectNode" />
               <item name="ansible" type="462c0819:PsiDirectoryNode" />
-              <item name="demo" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ansible" type="b2602c69:ProjectViewProjectNode" />
               <item name="ansible" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="library" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -123,9 +154,9 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/demo" />
-      <recent name="$PROJECT_DIR$/src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/demo" />
@@ -143,7 +174,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.hdfs_ansible">
+  <component name="RunManager" selected="Python tests.Nosetests in test_hdfs_ansible.py">
     <configuration name="Nosetests in test_fetch_resources.py" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -216,8 +247,8 @@
     </list>
     <recent_temporary>
       <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="Python.hdfs_ansible" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Nosetests in test_hdfs_ansible.py" />
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Nosetests in test_hdfs_ansible.py" />
+        <item index="1" class="java.lang.String" itemvalue="Python.hdfs_ansible" />
         <item index="2" class="java.lang.String" itemvalue="Python.test_hdfs_ansible" />
         <item index="3" class="java.lang.String" itemvalue="Python tests.Nosetests in test_fetch_resources.py" />
       </list>
@@ -237,34 +268,34 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Nosetests_in_test_fetch_resources_py - 2018.05.15 at 15h 53m 38s.xml">
-      <configuration name="Nosetests in test_fetch_resources.py" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Nosetests_in_test_hdfs_ansible_py - 2018.05.15 at 16h 36m 35s.xml">
+    <history-entry file="Nosetests_in_test_hdfs_ansible_py - 2018.05.28 at 11h 57m 33s.xml">
       <configuration name="Nosetests in test_hdfs_ansible.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_in_test_hdfs_ansible_py - 2018.05.15 at 16h 40m 14s.xml">
+    <history-entry file="Nosetests_in_test_hdfs_ansible_py - 2018.05.28 at 12h 06m 03s.xml">
       <configuration name="Nosetests in test_hdfs_ansible.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_in_test_hdfs_ansible_py - 2018.05.15 at 16h 40m 47s.xml">
+    <history-entry file="Nosetests_in_test_hdfs_ansible_py - 2018.05.28 at 12h 06m 55s.xml">
       <configuration name="Nosetests in test_hdfs_ansible.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_in_test_hdfs_ansible_py - 2018.05.15 at 16h 44m 36s.xml">
+    <history-entry file="Nosetests_in_test_hdfs_ansible_py - 2018.05.28 at 12h 13m 13s.xml">
       <configuration name="Nosetests in test_hdfs_ansible.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_in_test_hdfs_ansible_py - 2018.05.15 at 16h 52m 16s.xml">
+    <history-entry file="Nosetests_in_test_hdfs_ansible_py - 2018.05.28 at 12h 16m 00s.xml">
       <configuration name="Nosetests in test_hdfs_ansible.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_in_test_hdfs_ansible_py - 2018.05.15 at 16h 54m 05s.xml">
+    <history-entry file="Nosetests_in_test_hdfs_ansible_py - 2018.05.28 at 12h 21m 59s.xml">
       <configuration name="Nosetests in test_hdfs_ansible.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_in_test_hdfs_ansible_py - 2018.05.15 at 16h 54m 16s.xml">
+    <history-entry file="Nosetests_in_test_hdfs_ansible_py - 2018.05.28 at 12h 22m 05s.xml">
       <configuration name="Nosetests in test_hdfs_ansible.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_in_test_hdfs_ansible_py - 2018.05.15 at 16h 54m 36s.xml">
+    <history-entry file="Nosetests_in_test_hdfs_ansible_py - 2018.05.28 at 13h 16m 16s.xml">
       <configuration name="Nosetests in test_hdfs_ansible.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_in_test_hdfs_ansible_py - 2018.05.15 at 17h 09m 01s.xml">
+    <history-entry file="Nosetests_in_test_hdfs_ansible_py - 2018.05.28 at 13h 30m 44s.xml">
+      <configuration name="Nosetests in test_hdfs_ansible.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_in_test_hdfs_ansible_py - 2018.05.28 at 14h 48m 44s.xml">
       <configuration name="Nosetests in test_hdfs_ansible.py" configurationId="tests" />
     </history-entry>
   </component>
@@ -277,9 +308,9 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32984293" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29528797" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3748691" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46492147" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -317,7 +348,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="3" />
+      <option name="time" value="23" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -327,7 +358,8 @@
         <state relative-caret-position="1368">
           <caret line="78" column="26" lean-forward="false" selection-start-line="78" selection-start-column="26" selection-end-line="78" selection-end-column="26" />
           <folding>
-            <element signature="e#245#276#0" expanded="true" />
+            <element signature="e#4097#4106#0" expanded="true" />
+            <marker date="1527511691594" expanded="true" signature="4652:4736" ph="..." />
           </folding>
         </state>
       </provider>
@@ -340,7 +372,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/play.yml">
+    <entry file="file://$PROJECT_DIR$/src/play_apt.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="17" column="27" lean-forward="false" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
@@ -364,20 +396,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitmodules" />
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ansible_venv/lib/python2.6/site-packages/mock/mock.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="61" column="4" lean-forward="false" selection-start-line="61" selection-start-column="4" selection-end-line="61" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/demo/inventory">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
@@ -393,23 +411,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/library/github_repo.py" />
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="90">
-            <caret line="5" column="53" lean-forward="false" selection-start-line="5" selection-start-column="53" selection-end-line="5" selection-end-column="53" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/library/test_hdfs_ansible.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="33" column="62" lean-forward="true" selection-start-line="33" selection-start-column="62" selection-end-line="33" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/demo/library/test_fetch_resources.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
@@ -456,37 +457,139 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/inventory">
+    <entry file="file://$PROJECT_DIR$/demo/play.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" column="9" lean-forward="true" selection-start-line="1" selection-start-column="9" selection-end-line="1" selection-end-column="9" />
+        <state relative-caret-position="234">
+          <caret line="13" column="34" lean-forward="false" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/play.yml">
+    <entry file="file://$PROJECT_DIR$/ansible_venv/lib/python2.6/site-packages/hdfs/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="23" column="23" lean-forward="true" selection-start-line="23" selection-start-column="23" selection-end-line="23" selection-end-column="23" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/inventory">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="23" lean-forward="true" selection-start-line="4" selection-start-column="23" selection-end-line="4" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/library/dummy2">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/library/dummy3">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/library/dummy1">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/library/dummy4">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ansible_venv/lib/python2.6/site-packages/mock/mock.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="1304" column="0" lean-forward="false" selection-start-line="1304" selection-start-column="0" selection-end-line="1304" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ansible_venv/lib/python2.6/site-packages/ansible/module_utils/basic.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="2311" column="8" lean-forward="false" selection-start-line="2311" selection-start-column="8" selection-end-line="2311" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ansible_venv/lib/python2.6/site-packages/hdfs/client.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="64" column="6" lean-forward="false" selection-start-line="64" selection-start-column="6" selection-end-line="64" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="7" lean-forward="false" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="33">
+            <caret line="33" column="66" lean-forward="false" selection-start-line="33" selection-start-column="66" selection-end-line="33" selection-end-column="66" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/play_apt.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="99">
+          <caret line="96" column="23" lean-forward="true" selection-start-line="96" selection-start-column="23" selection-end-line="96" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/play_yum.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="14" lean-forward="true" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/library/hdfs_ansible.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="187" column="10" lean-forward="true" selection-start-line="187" selection-start-column="10" selection-end-line="187" selection-end-column="10" />
+        <state relative-caret-position="4794">
+          <caret line="390" column="0" lean-forward="true" selection-start-line="390" selection-start-column="0" selection-end-line="390" selection-end-column="0" />
           <folding>
-            <element signature="e#245#276#0" expanded="true" />
+            <element signature="e#4097#4106#0" expanded="true" />
+            <marker date="1527511691594" expanded="true" signature="4652:4736" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/demo/play.yml">
+    <entry file="file://$PROJECT_DIR$/src/library/test_hdfs_ansible.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="13" column="34" lean-forward="false" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
-          <folding />
+        <state relative-caret-position="495">
+          <caret line="78" column="37" lean-forward="false" selection-start-line="78" selection-start-column="37" selection-end-line="78" selection-end-column="37" />
+          <folding>
+            <element signature="e#1#32#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -60,23 +60,23 @@ class TestHDFSAnsible(unittest.TestCase):
         exists = hdfs_ansible.path_exists(mock_module, hdfs_client=self.hdfs_client, hdfs_path=not_exists_path)
         self.assertEqual(exists, mock_path_exists.return_value)
 
-    @patch('hdfs_ansible.delete', side_effect=hdfs_ansible.delete)
+    @patch('hdfs_ansible.remove', side_effect=hdfs_ansible.remove)
     @patch('hdfs_ansible.AnsibleModule')
-    def test_delete_given_hdfs_path(self, mock_module, mock_delete):
+    def test_delete_given_hdfs_path(self, mock_module, mock_remove):
 
-        mock_delete.return_value = True
-        results = hdfs_ansible.delete(mock_module, hdfs_client=self.hdfs_client, hdfs_path=self.hdfs_path, recursive=False)
-        self.assertEqual(results, mock_delete.return_value)
+        mock_remove.return_value = True
+        results = hdfs_ansible.remove(mock_module, hdfs_client=self.hdfs_client, hdfs_path=self.hdfs_path, recursive=False)
+        self.assertEqual(results, mock_remove.return_value)
 
         hdfs_inner_path = os.path.join(self.hdfs_path, "rtest-folder")
         self.hdfs_client.makedirs(hdfs_inner_path)
 
-        mock_delete.return_value = False
-        results = hdfs_ansible.delete(mock_module, hdfs_client=self.hdfs_client, hdfs_path=self.hdfs_path, recursive=False)
-        self.assertEqual(results, mock_delete.return_value)
+        mock_remove.return_value = False
+        results = hdfs_ansible.remove(mock_module, hdfs_client=self.hdfs_client, hdfs_path=self.hdfs_path, recursive=False)
+        self.assertEqual(results, mock_remove.return_value)
 
-        mock_delete.return_value = True
-        results = hdfs_ansible.delete(mock_module, hdfs_client=self.hdfs_client, hdfs_path=self.hdfs_path, recursive=True)
+        mock_remove.return_value = True
+        results = hdfs_ansible.remove(mock_module, hdfs_client=self.hdfs_client, hdfs_path=self.hdfs_path, recursive=True)
         self.assertEqual(results, True)
 
     @patch('hdfs_ansible.change_owner', side_effect=hdfs_ansible.change_owner)
