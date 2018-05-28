@@ -123,3 +123,30 @@ class TestHDFSAnsible(unittest.TestCase):
         changed_permission = hdfs_ansible.change_permission(mock_module, hdfs_client=self.hdfs_client, hdfs_path=self.hdfs_path,
                                                             permission=new_permission)
         self.assertEqual(changed_permission, mock_change_permission.return_value)
+
+    @patch('hdfs_ansible.upload_localfile', side_effect=hdfs_ansible.upload_localfile)
+    @patch('hdfs_ansible.AnsibleModule')
+    def test_upload_localfile_to_hdfs_path(self, mock_module, mock_upload_localfile):
+        mock_upload_localfile.return_value = os.path.join(self.hdfs_path, "dummy1")
+        uploaded = hdfs_ansible.upload_localfile(mock_module, hdfs_client=self.hdfs_client, hdfs_path=self.hdfs_path,
+                                                 local_path="dummy1")
+        self.assertEqual(uploaded, mock_upload_localfile.return_value)
+
+        mock_upload_localfile.return_value = False
+        uploaded = hdfs_ansible.upload_localfile(mock_module, hdfs_client=self.hdfs_client, hdfs_path=self.hdfs_path,
+                                                 local_path="dummy1")
+        self.assertEqual(uploaded, mock_upload_localfile.return_value)
+
+    @patch('hdfs_ansible.make_directory', side_effect=hdfs_ansible.make_directory)
+    @patch('hdfs_ansible.AnsibleModule')
+    def test_make_new_directory(self, mock_module, mock_make_directory):
+        mock_make_directory.return_value = "new directory created."
+        new_hdfs_dir = os.path.join(self.hdfs_path, "new-dir")
+        new_dir_success = hdfs_ansible.make_directory(mock_module, hdfs_client=self.hdfs_client, hdfs_path=new_hdfs_dir)
+        self.assertEqual(new_dir_success, mock_make_directory.return_value)
+
+        mock_make_directory.return_value = False
+        uploaded = hdfs_ansible.upload_localfile(mock_module, hdfs_client=self.hdfs_client, hdfs_path=self.hdfs_path,
+                                                 local_path="dummy1")
+        new_dir_success = hdfs_ansible.make_directory(mock_module, hdfs_client=self.hdfs_client, hdfs_path=uploaded)
+        self.assertEqual(new_dir_success, mock_make_directory.return_value)
