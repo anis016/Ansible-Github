@@ -1,2 +1,5 @@
 [ubuntu_hosts]
 localhost
+
+[yum_hosts]
+sandbox.hortonworks.com
