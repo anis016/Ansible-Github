@@ -30,16 +30,28 @@ Tasks are ordered in **List of Dictionaries**.
 More on [ansible playbooks](http://docs.ansible.com/ansible/latest/user_guide/playbooks.html).
 
 Run playbook using following command:
-```bash
+
+1. Running without any sudo mode or if already in the `root` user.
+```
 ansible-playbook -i src/inventory src/play.yml
 ```
-
-Majority of the work in here is based on [Custom Ansible Module](https://blog.toast38coza.me/custom-ansible-module-hello-world/)
-
+2. Running with sudo mode and passing the password inline. [not recommended]
+```
+ansible-playbook -i src/inventory src/play_apt.yml --user=sayed --extra-vars "ansible_sudo_pass=XXXXXXX"
+```
+3. Running without any sudo mode without passing the password inline.
+```
+ansible-playbook -i src/inventory src/play_apt.yml --ask-become-pass
+```
+<!-- 
+Majority of the work in here is based on [Custom Ansible Module](https://blog.toast38coza.me/custom-ansible-module-hello-world/) 
 This repository is about creating Ansible Modules that can `create or delete a repository on github`.
+-->
 
-### Ansible Module:
+### HDFS Ansible Module:
 Ansible modules are the building blocks for building ansible playbooks. They are small pieces of python code that can be triggered from the `yaml` in a playbook.
+
+`hdfs_ansible` is the modules for interacting with HDFS. It provides functionality similar to the core Ansible file module for the HDFS filesystem.
 
 ### Resources:
 
