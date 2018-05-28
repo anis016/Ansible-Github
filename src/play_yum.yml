@@ -1,0 +1,33 @@
+-
+  name: hdfs playbook
+  hosts: yum_hosts
+  tasks:
+    - name: Install yum requirements
+      become: yes
+      raw: yum install -y gcc openssl-devel python-devel libffi libffi-devel
+
+    - name: Install hdfs and kerberos modules
+      become: yes
+      pip:
+        name: "{{ item }}"
+        extra_args: --trusted-host files.pythonhosted.org --trusted-host pypi.org --trusted-host pypi.python.org
+      with_items:
+        - cffi
+        - hdfs
+        - ansible
+        - requests-kerberos
+        - pykerberos
+
+    - name: calling hdfs module
+      hdfs_ansible:
+        webhdfs_host: http://sandbox.hortonworks.com
+        webhdfs_port: 50070
+        effective_user: sayed
+        hdfsPath: /tmp/
+        recurse: False
+        command: ls
+      register: result
+
+    - name: dump output
+      debug:
+        msg: '{{ result }}'

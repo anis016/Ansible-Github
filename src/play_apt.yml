@@ -1,24 +1,29 @@
-# playbook defines a set of tasks to be run on hosts.
 -
   name: hdfs playbook
   hosts: ubuntu_hosts
   # create tasks
   tasks:
+    - name: Install ubuntu packages
+      become: yes
+      raw: apt-get -y install gcc libkrb5-dev
+
     # Install hdfs python library
-    - name: Install hdfs python HDFS client
+    - name: Install hdfs module
       become: yes
       pip:
         name: hdfs
         state: latest
 
-    - name: hdfs list directory
+    - name: calling hdfs module
       hdfs_ansible:
         webhdfs_host: http://127.0.0.1
         webhdfs_port: 50070
-        effective_user: sayed
+        user: sayed
         hdfsPath: /tmp/
         recurse: False
         command: ls
       register: result
 
-    - debug: var=result
+    - name: dump output
+      debug:
+        msg: '{{ result }}'
