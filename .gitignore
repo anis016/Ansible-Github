@@ -3,3 +3,4 @@ ansible_venv/
 .idea/workspace.xml
 ansible-dev
 *.pyc
+*.retry
