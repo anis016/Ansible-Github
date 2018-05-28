@@ -1,47 +1,125 @@
 
-import unittest
-from ansible.compat.tests.mock import call, create_autospec, patch, mock_open
 from hdfs import InsecureClient
-from ansible.module_utils.basic import AnsibleModule
+import unittest
 import hdfs_ansible as hdfs_ansible
+from mock import patch
+import os
 
-"""
-Using Singleton class to instantiate in setUp(). This is done so that, hdfs_client is instantiated only once.
-"""
 class Singleton(object):
     _instance = None
     def __new__(cls, *args, **kwargs):
         if not cls._instance:
             cls._instance = super(Singleton, cls).__new__(cls, *args, **kwargs)
         cls.hdfs_client = InsecureClient('http://sandbox.hortonworks.com:50070', user='sayed')
-        cls.hdfs_path = '/tmp/'
+        cls.hdfs_path = '/tmp/ansible-test-folder/'
+
         return cls._instance
 
-# class TestHDFSAnsible(unittest.TestCase):
-#
-#     def setUp(self):
-#         self.hdfs_client = Singleton().hdfs_client
-#         self.hdfs_path = Singleton().hdfs_path
-#
-#     @patch('hdfs_ansible.list_files')
-#     def test_module_args(self):
-#         """
-#         prefix_check - test module arguments
-#         """
-#         prefix_check.main()
-#         mock_module.assert_called_with(
-#             argument_spec={
-#                 'prefix': {'required': True, 'type': 'str'},
-#                 'timeout': {'type': 'int', 'default': 5},
-#             })
-#
-#     @patch('hdfs_ansible.list_files')
-#     def test_list_files(self, list_files):
-#
-#         # Exercise
-#         all_paths = hdfs_ansible.list_files(hdfs_client=self.hdfs_client, hdfs_path=self.hdfs_path, recursive=False)
-#
-#     @patch('hdfs_ansible.path_exists')
-#     def test_path_exists(self, path_exists):
-#         print path_exists
+class TestHDFSAnsible(unittest.TestCase):
 
+    def setUp(self):
+        self.hdfs_client = Singleton().hdfs_client
+        self.hdfs_path = Singleton().hdfs_path
+        self.hdfs_client.delete(hdfs_path=self.hdfs_path, recursive=True)
+        self.hdfs_client.makedirs(self.hdfs_path)
+
+    def tearDown(self):
+        self.hdfs_client.delete(hdfs_path=self.hdfs_path, recursive=True)
+
+    @patch('hdfs_ansible.list_files', side_effect=hdfs_ansible.list_files)
+    @patch('hdfs_ansible.AnsibleModule')
+    def test_list_hdfs_files(self, mock_module, mock_list_files):
+
+        for path in ("dummy1", "dummy2", "dummy3"):
+            self.hdfs_client.upload(hdfs_path=self.hdfs_path, local_path=path)
+        mock_list_files.return_value = 3
+
+        files = hdfs_ansible.list_files(mock_module, hdfs_client=self.hdfs_client, hdfs_path=self.hdfs_path, recursive=False)
+        self.assertEqual(len(files), mock_list_files.return_value)
+
+        inner_path = os.path.join(self.hdfs_path, "rtest-folder")
+        self.hdfs_client.makedirs(inner_path)
+        self.hdfs_client.upload(hdfs_path=inner_path, local_path="dummy4")
+        mock_list_files.return_value = 5
+
+        files = hdfs_ansible.list_files(mock_module, hdfs_client=self.hdfs_client, hdfs_path=self.hdfs_path, recursive=True)
+        self.assertEqual(len(files), mock_list_files.return_value)
+
+    @patch('hdfs_ansible.path_exists', side_effect=hdfs_ansible.path_exists)
+    @patch('hdfs_ansible.AnsibleModule')
+    def test_path_exists_success(self, mock_module, mock_path_exists):
+        mock_path_exists.return_value = self.hdfs_path
+        exists = hdfs_ansible.path_exists(mock_module, hdfs_client=self.hdfs_client, hdfs_path=self.hdfs_path)
+        self.assertEqual(exists, mock_path_exists.return_value)
+
+    @patch('hdfs_ansible.path_exists', side_effect=hdfs_ansible.path_exists)
+    @patch('hdfs_ansible.AnsibleModule')
+    def test_path_exists_failure(self, mock_module, mock_path_exists):
+        mock_path_exists.return_value = False
+        not_exists_path = os.path.join(self.hdfs_path, "/not-exists")
+        exists = hdfs_ansible.path_exists(mock_module, hdfs_client=self.hdfs_client, hdfs_path=not_exists_path)
+        self.assertEqual(exists, mock_path_exists.return_value)
+
+    @patch('hdfs_ansible.delete', side_effect=hdfs_ansible.delete)
+    @patch('hdfs_ansible.AnsibleModule')
+    def test_delete_given_hdfs_path(self, mock_module, mock_delete):
+
+        mock_delete.return_value = True
+        results = hdfs_ansible.delete(mock_module, hdfs_client=self.hdfs_client, hdfs_path=self.hdfs_path, recursive=False)
+        self.assertEqual(results, mock_delete.return_value)
+
+        hdfs_inner_path = os.path.join(self.hdfs_path, "rtest-folder")
+        self.hdfs_client.makedirs(hdfs_inner_path)
+
+        mock_delete.return_value = False
+        results = hdfs_ansible.delete(mock_module, hdfs_client=self.hdfs_client, hdfs_path=self.hdfs_path, recursive=False)
+        self.assertEqual(results, mock_delete.return_value)
+
+        mock_delete.return_value = True
+        results = hdfs_ansible.delete(mock_module, hdfs_client=self.hdfs_client, hdfs_path=self.hdfs_path, recursive=True)
+        self.assertEqual(results, True)
+
+    @patch('hdfs_ansible.change_owner', side_effect=hdfs_ansible.change_owner)
+    @patch('hdfs_ansible.AnsibleModule')
+    def test_change_owner_of_hdfs_path(self, mock_module, mock_change_owner):
+        new_owner = "hdfs"
+
+        mock_change_owner.return_value = True
+        changed_owner = hdfs_ansible.change_owner(mock_module, hdfs_client=self.hdfs_client, hdfs_path=self.hdfs_path,
+                                                  owner=new_owner)
+        self.assertEqual(changed_owner, mock_change_owner.return_value)
+
+        mock_change_owner.return_value = False
+        changed_owner = hdfs_ansible.change_owner(mock_module, hdfs_client=self.hdfs_client, hdfs_path=self.hdfs_path,
+                                                  owner=new_owner)
+        self.assertEqual(changed_owner, mock_change_owner.return_value)
+
+    @patch('hdfs_ansible.change_group', side_effect=hdfs_ansible.change_group)
+    @patch('hdfs_ansible.AnsibleModule')
+    def test_change_group(self, mock_module, mock_change_group):
+        new_group = "hdfs"
+
+        mock_change_group.return_value = True
+        changed_group = hdfs_ansible.change_group(mock_module, hdfs_client=self.hdfs_client, hdfs_path=self.hdfs_path,
+                                                  group=new_group)
+        self.assertEqual(changed_group, mock_change_group.return_value)
+
+        mock_change_group.return_value = False
+        changed_group = hdfs_ansible.change_group(mock_module, hdfs_client=self.hdfs_client, hdfs_path=self.hdfs_path,
+                                                  group=new_group)
+        self.assertEqual(changed_group, False)
+
+    @patch('hdfs_ansible.change_permission', side_effect=hdfs_ansible.change_permission)
+    @patch('hdfs_ansible.AnsibleModule')
+    def test_change_permission(self, mock_module, mock_change_permission):
+        new_permission = "0777"
+
+        mock_change_permission.return_value = True
+        changed_permission = hdfs_ansible.change_permission(mock_module, hdfs_client=self.hdfs_client, hdfs_path=self.hdfs_path,
+                                                            permission=new_permission)
+        self.assertEqual(changed_permission, mock_change_permission.return_value)
+
+        mock_change_permission.return_value = False
+        changed_permission = hdfs_ansible.change_permission(mock_module, hdfs_client=self.hdfs_client, hdfs_path=self.hdfs_path,
+                                                            permission=new_permission)
+        self.assertEqual(changed_permission, mock_change_permission.return_value)

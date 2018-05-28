@@ -7,15 +7,14 @@ ANSIBLE_METADATA = {'metadata_version': '1.1',
 
 DOCUMENTATION = '''
 ---
-module: my_sample_module
-
-short_description: This is my sample module
-
+module: hdfs_ansible
+short_description: Performs certain operations against HDFS.
 version_added: "2.4"
-
 description:
     - "This is my longer description explaining my sample module"
-
+requirements: [ "hdfs (Python 2.X WebHDFS client)",
+                "requests-kerberos (Kerberos requests)",
+                "pykerberos (A high-level wrapper for Kerberos (GSSAPI) operations)" ]
 options:
     name:
         description:
@@ -25,12 +24,8 @@ options:
         description:
             - Control to demo if the result of this module is changed or not
         required: false
-
-extends_documentation_fragment:
-    - azure
-
 author:
-    - Your Name (@yourhandle)
+    - Sayed Anisul Hoque @ UT
 '''
 
 EXAMPLES = '''
@@ -104,14 +99,13 @@ def delete(module, hdfs_client, hdfs_path=None, recursive=False):
     if hdfs_path is None:
         module.fail_json(msg="hdfs path should not be empty.")
 
-    if path_exists(hdfs_client, hdfs_path):
+    if path_exists(module, hdfs_client, hdfs_path):
         try:
             success = hdfs_client.delete(hdfs_path, recursive=recursive)
             if success is True:
                 return True
         except HdfsError:
             return False
-
     else:
         return False
 
@@ -122,7 +116,7 @@ def change_owner(module, hdfs_client, hdfs_path=None, owner=None):
     if owner is None:
         module.fail_json(msg="owner should not be empty.")
 
-    if path_exists(hdfs_client, hdfs_path):
+    if path_exists(module, hdfs_client, hdfs_path):
         current_owner = hdfs_client.status(hdfs_path)["owner"]
         hdfs_client.set_owner(hdfs_path, owner=owner)
         new_owner = hdfs_client.status(hdfs_path)["owner"]
@@ -135,7 +129,7 @@ def change_group(module, hdfs_client, hdfs_path=None, group=None):
     if group is None:
         module.fail_json(msg="group should not be empty.")
 
-    if path_exists(hdfs_client, hdfs_path):
+    if path_exists(module, hdfs_client, hdfs_path):
         current_group = hdfs_client.status(hdfs_path)["group"]
         hdfs_client.set_owner(hdfs_path, group=group)
         new_group = hdfs_client.status(hdfs_path)["group"]
@@ -148,7 +142,7 @@ def change_permission(module, hdfs_client, hdfs_path=None, permission=None):
     if permission is None:
         module.fail_json(msg="permission should not be empty.")
 
-    if path_exists(hdfs_client, hdfs_path):
+    if path_exists(module, hdfs_client, hdfs_path):
         current_permission = hdfs_client.status(hdfs_path)["permission"]
         hdfs_client.set_permission(hdfs_path, permission=permission)
         new_permission = hdfs_client.acl_status(hdfs_path)["permission"]
@@ -161,7 +155,7 @@ def upload_localfile(module, hdfs_client, hdfs_path=None, local_path=None):
     if local_path is None:
         module.fail_json(msg="local path should not be empty.")
 
-    if path_exists(hdfs_client, hdfs_path):
+    if path_exists(module, hdfs_client, hdfs_path):
         file_name = local_path.split("/")[-1]
         files_list = hdfs_client.list(hdfs_path)
         if file_name not in files_list:
