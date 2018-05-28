@@ -1,5 +1,6 @@
 
 from hdfs import InsecureClient
+# from hdfs.ext.kerberos import KerberosClient
 import unittest
 import hdfs_ansible as hdfs_ansible
 from mock import patch
@@ -10,7 +11,8 @@ class Singleton(object):
     def __new__(cls, *args, **kwargs):
         if not cls._instance:
             cls._instance = super(Singleton, cls).__new__(cls, *args, **kwargs)
-        cls.hdfs_client = InsecureClient('http://sandbox.hortonworks.com:50070', user='sayed')
+        cls.hdfs_client = InsecureClient('http://sandbox.hortonworks.com:50070')
+        # cls.hdfs_client = KerberosClient('http://sandbox.hortonworks.com:50070')
         cls.hdfs_path = '/tmp/ansible-test-folder/'
 
         return cls._instance

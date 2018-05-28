@@ -29,10 +29,6 @@ options:
         description:
             - WebHDFS URL with Hostname and PORT.
         required: True
-    user:
-        description:
-            - User that have access for the file operations.
-        required: True
     hdfsPath:
         description:
             - HDFS Path on which the operations will be carried out.
@@ -69,7 +65,6 @@ EXAMPLES = '''
 # list all the files in the hdfs path
 - hdfs_ansible:
     webhdfs_http_url: http://sandbox.hortonworks.com:50070
-    user: sayed
     hdfsPath: /tmp/
     recurse: False
     command: ls
@@ -77,21 +72,18 @@ EXAMPLES = '''
 # check if the hdfs path exists
 - hdfs_ansible:
     webhdfs_http_url: http://sandbox.hortonworks.com:50070
-    user: sayed
     hdfsPath: /tmp/not-exist
     command: exists
   
 # removes file or directory if the hdfs path exists
 - hdfs_ansible:
     webhdfs_http_url: http://sandbox.hortonworks.com:50070
-    user: sayed
     hdfsPath: /tmp/not-exist
     command: rm
   
 # sets owner of the hdfs file or directory
 - hdfs_ansible:
     webhdfs_http_url: http://sandbox.hortonworks.com:50070
-    user: sayed
     hdfsPath: /tmp/kernel_cleaner.sh
     command: chown
     owner: solr
@@ -99,7 +91,6 @@ EXAMPLES = '''
 # sets group of the hdfs file or directory
 - hdfs_ansible:
     webhdfs_http_url: http://sandbox.hortonworks.com:50070
-    user: sayed
     hdfsPath: /tmp/kernel_cleaner.sh
     command: chgrp
     group: solr
@@ -107,7 +98,6 @@ EXAMPLES = '''
 # sets permissions of the hdfs file or directory
 - hdfs_ansible:
     webhdfs_http_url: http://sandbox.hortonworks.com:50070
-    user: sayed
     hdfsPath: /tmp/kernel_cleaner.sh
     command: chmod
     permission: "0666"
@@ -115,14 +105,12 @@ EXAMPLES = '''
 # creates new directory in hdfs if not exists
 - hdfs_ansible:
     webhdfs_http_url: http://sandbox.hortonworks.com:50070
-    user: sayed
     hdfsPath: /tmp/some-new-folder
     command: mkdir
 
 # uploads a local file to hdfs
 - hdfs_ansible:
     webhdfs_http_url: http://sandbox.hortonworks.com:50070
-    user: sayed
     hdfsPath: /tmp
     localPath: /home/sayed/oozie-document-sla-retrieval.adoc
     command: put
@@ -149,7 +137,7 @@ def list_files(module, hdfs_client, hdfs_path=None, recursive=False):
     :return: list of all the files in the given hdfs path.
     """
     if hdfs_path is None:
-        module.fail_json(msg="hdfs path should not be empty.")
+         module.fail_json(msg="hdfs path should not be empty.")
 
     if path_exists(module, hdfs_client, hdfs_path):
         if recursive is False:
@@ -368,19 +356,19 @@ def run(module, hdfs_client):
     elif command == "chown":
         result = change_owner(module, hdfs_client, hdfs_path=hdfs_path, owner=owner)
         if result == False:
-            module.exit_json(changed=False, msg="{0}".format(status(hdfs_client, hdfs_path)))
+            module.exit_json(changed=False, msg="{0}".format(status(module, hdfs_client, hdfs_path)))
         else:
             module.exit_json(changed=True, msg="Owner Changed {0}".format(hdfs_path))
     elif command == "chgrp":
         result = change_group(module, hdfs_client, hdfs_path=hdfs_path, group=group)
         if result == False:
-            module.exit_json(changed=False, msg="{0}".format(status(hdfs_client, hdfs_path)))
+            module.exit_json(changed=False, msg="{0}".format(status(module, hdfs_client, hdfs_path)))
         else:
             module.exit_json(changed=True, msg="Group Changed {0}".format(hdfs_path))
     elif command == "chmod":
         result = change_permission(module, hdfs_client, hdfs_path=hdfs_path, permission=permission)
         if result == False:
-            module.exit_json(changed=False, msg="{0}".format(status(hdfs_client, hdfs_path)))
+            module.exit_json(changed=False, msg="{0}".format(status(module, hdfs_client, hdfs_path)))
         else:
             module.exit_json(changed=True, msg="Permission Changed {0}".format(hdfs_path))
     elif command == "put":
@@ -402,7 +390,6 @@ def main():
     """
     fields = {
         "webhdfs_http_url": {"required": True, "type": "str"},
-        "user": {"required": True, "type": "str"},
         "hdfsPath": {"required": True, "type": "str"},
         "command": {"required": True,
                     "choices": ["ls", "exists", "rm", "chown", "chgrp", "chmod", "put", "mkdir"],
@@ -419,15 +406,14 @@ def main():
     try:
         params = module.params
         webhdfs_url = params["webhdfs_http_url"]
-        user = params["user"]
 
-        hdfs_client = InsecureClient(webhdfs_url, user=user)
-        # hdfs_client = KerberosClient(web_hdfs_url)
+        hdfs_client = InsecureClient(webhdfs_url)
+        # hdfs_client = KerberosClient(webhdfs_url)
         run(module, hdfs_client)
 
     except Exception as e:
-        module.fail_json(msg='Unable to init WEB HDFS client for %s:%s: %s' % (
-            params['webhdfs_http_url'], params['user'], str(e)))
+        module.fail_json(msg='Unable to init WEB HDFS client for %s: %s' % (
+            params['webhdfs_http_url'], str(e)))
 
 if __name__ == '__main__':
     main()
