@@ -19,8 +19,8 @@
 
     - name: list all the files in the hdfs path
       hdfs_ansible:
-        webhdfs_http_url: http://sandbox.hortonworks.com:50070
-        hdfsPath: /tmp/
+        webhdfs_url: http://sandbox.hortonworks.com:50070
+        path: /tmp/
         recurse: False
         command: ls
       register: result_list
@@ -29,83 +29,72 @@
       debug:
         msg: '{{ result_list }}'
 
-#    - name: check if the hdfs path exists
-#      hdfs_ansible:
-#        webhdfs_http_url: http://sandbox.hortonworks.com:50070
-#        hdfsPath: /tmp/not-exist
-#        command: exists
-#      register: result_exists
-#
-#    - name: dump output for exists
-#      debug:
-#        msg: '{{ result_exists }}'
-#
-#    - name: removes file or directory if the hdfs path exists
-#      hdfs_ansible:
-#        webhdfs_http_url: http://sandbox.hortonworks.com:50070
-#        hdfsPath: /tmp/not-exist
-#        command: rm
-#      register: result_rm
-#
-#    - name: dump output for remove
-#      debug:
-#        msg: '{{ result_rm }}'
-#
-#    - name: sets owner of the hdfs file or directory
-#      hdfs_ansible:
-#        webhdfs_http_url: http://sandbox.hortonworks.com:50070
-#        hdfsPath: /tmp/kernel_cleaner.sh
-#        command: chown
-#        owner: solr
-#      register: result_chown
-#
-#    - name: dump output for owner
-#      debug:
-#        msg: '{{ result_chown }}'
-#
-#    - name: sets group of the hdfs file or directory
-#      hdfs_ansible:
-#        webhdfs_http_url: http://sandbox.hortonworks.com:50070
-#        hdfsPath: /tmp/kernel_cleaner.sh
-#        command: chgrp
-#        group: solr
-#      register: result_chgrp
-#
-#    - name: dump output for group
-#      debug:
-#        msg: '{{ result_chgrp }}'
-#
-#    - name: sets permissions of the hdfs file or directory
-#      hdfs_ansible:
-#        webhdfs_http_url: http://sandbox.hortonworks.com:50070
-#        hdfsPath: /tmp/kernel_cleaner.sh
-#        command: chmod
-#        permission: "0666"
-#      register: result_chmod
-#
-#    - name: dump output for permission
-#      debug:
-#        msg: '{{ result_chmod }}'
-#
-#    - name: creates new directory in hdfs if not exists
-#      hdfs_ansible:
-#        webhdfs_http_url: http://sandbox.hortonworks.com:50070
-#        hdfsPath: /tmp/some-new-folder
-#        command: mkdir
-#      register: result_mkdir
-#
-#    - name: dump output for mkdir
-#      debug:
-#        msg: '{{ result_mkdir }}'
-#
-#    - name: uploads a local file to hdfs
-#      hdfs_ansible:
-#        webhdfs_http_url: http://sandbox.hortonworks.com:50070
-#        hdfsPath: /tmp
-#        localPath: /home/sayed/oozie-document-sla-retrieval.adoc
-#        command: put
-#      register: result_put
-#
-#    - name: dump output for put
-#      debug:
-#        msg: '{{ result_put }}'
+    - name: removes file or directory if the hdfs path exists
+      hdfs_ansible:
+        webhdfs_url: http://sandbox.hortonworks.com:50070
+        path: /tmp/not-exist
+        command: rm
+      register: result_rm
+
+    - name: dump output for remove
+      debug:
+        msg: '{{ result_rm }}'
+
+    - name: sets owner of the hdfs file or directory
+      hdfs_ansible:
+        webhdfs_url: http://sandbox.hortonworks.com:50070
+        path: /tmp/kernel_cleaner.sh
+        command: chown
+        owner: solr
+      register: result_chown
+
+    - name: dump output for owner
+      debug:
+        msg: '{{ result_chown }}'
+
+    - name: sets group of the hdfs file or directory
+      hdfs_ansible:
+        webhdfs_url: http://sandbox.hortonworks.com:50070
+        path: /tmp/kernel_cleaner.sh
+        command: chgrp
+        group: solr
+      register: result_chgrp
+
+    - name: dump output for group
+      debug:
+        msg: '{{ result_chgrp }}'
+
+    - name: sets permissions of the hdfs file or directory
+      hdfs_ansible:
+        webhdfs_url: http://sandbox.hortonworks.com:50070
+        path: /tmp/kernel_cleaner.sh
+        command: chmod
+        permission: "0666"
+      register: result_chmod
+
+    - name: dump output for permission
+      debug:
+        msg: '{{ result_chmod }}'
+
+    - name: creates new directory in hdfs if not exists
+      hdfs_ansible:
+        webhdfs_url: http://sandbox.hortonworks.com:50070
+        path: /tmp/some-new-folder
+        command: mkdir
+      register: result_mkdir
+
+    - name: dump output for mkdir
+      debug:
+        msg: '{{ result_mkdir }}'
+
+    - name: uploads a local file to hdfs
+      hdfs_ansible:
+        webhdfs_url: http://sandbox.hortonworks.com:50070
+        path: /tmp
+        local_path: /home/sayed/oozie-document-sla-retrieval.adoc
+        command: put
+      register: result_put
+
+    - name: dump output for put
+      debug:
+        msg: '{{ result_put }}'

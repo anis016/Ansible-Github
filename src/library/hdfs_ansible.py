@@ -10,7 +10,7 @@ DOCUMENTATION = '''
 module: hdfs_ansible
 short_description: Performs operations against HDFS.
 description:
-    Given a hdfs path, this module performs the below operations.
+    Given a HDFS path, this module performs the below operations.
     - Uploading a local file to HDFS (hdfs dfs -put ...)
     - Change the permissions of a file or directory (hdfs dfs -chmod ...)
     - Change the owner of a file or directory (hdfs dfs -chown ...)
@@ -25,11 +25,11 @@ requirements: [ "hdfs (Python 2.X WebHDFS client)",
                 "requests-kerberos (Kerberos requests)",
                 "pykerberos (A high-level wrapper for Kerberos (GSSAPI) operations)" ]
 options:        
-    webhdfs_http_url:
+    webhdfs_url:
         description:
             - WebHDFS URL with Hostname and PORT.
         required: True
-    hdfsPath:
+    hdfs_path:
         description:
             - HDFS Path on which the operations will be carried out.
         required: True
@@ -37,7 +37,7 @@ options:
         description:
             - Commands that performs certain operations. Please check the description for what each command does.
         required: True
-    localPath:
+    local_path:
         description:
             - Local file path. This is required for "put" command that will upload files into the certain HDFS directory.
         required: False
@@ -58,69 +58,57 @@ options:
             - Changes the permission(octal) eg: 0777 of a file or directory.
         required: False
 author:
-    - Sayed Anisul Hoque @ UT
+    - Sayed Anisul Hoque @ Ultra Tendency GmbH
 '''
 
 EXAMPLES = '''
-# list all the files in the hdfs path
+# Removes a file or a directory if the HDFS path exists.
 - hdfs_ansible:
-    webhdfs_http_url: http://sandbox.hortonworks.com:50070
-    hdfsPath: /tmp/
-    recurse: False
-    command: ls
-  
-# check if the hdfs path exists
-- hdfs_ansible:
-    webhdfs_http_url: http://sandbox.hortonworks.com:50070
-    hdfsPath: /tmp/not-exist
-    command: exists
-  
-# removes file or directory if the hdfs path exists
-- hdfs_ansible:
-    webhdfs_http_url: http://sandbox.hortonworks.com:50070
-    hdfsPath: /tmp/not-exist
+    webhdfs_url: http://sandbox.hortonworks.com:50070
+    hdfs_path: /tmp/not-exist
     command: rm
   
-# sets owner of the hdfs file or directory
+# Sets the owner of an HDFS file or directory.
 - hdfs_ansible:
-    webhdfs_http_url: http://sandbox.hortonworks.com:50070
-    hdfsPath: /tmp/kernel_cleaner.sh
+    webhdfs_url: http://sandbox.hortonworks.com:50070
+    hdfs_path: /tmp/kernel_cleaner.sh
     command: chown
     owner: solr
   
-# sets group of the hdfs file or directory
+# Sets the group of an HDFS file or directory.
 - hdfs_ansible:
-    webhdfs_http_url: http://sandbox.hortonworks.com:50070
-    hdfsPath: /tmp/kernel_cleaner.sh
+    webhdfs_url: http://sandbox.hortonworks.com:50070
+    hdfs_path: /tmp/kernel_cleaner.sh
     command: chgrp
     group: solr
 
-# sets permissions of the hdfs file or directory
+# Sets the permissions of an HDFS file or directory.
 - hdfs_ansible:
-    webhdfs_http_url: http://sandbox.hortonworks.com:50070
-    hdfsPath: /tmp/kernel_cleaner.sh
+    webhdfs_url: http://sandbox.hortonworks.com:50070
+    hdfs_path: /tmp/kernel_cleaner.sh
     command: chmod
     permission: "0666"
 
-# creates new directory in hdfs if not exists
+# Creates a new directory in the HDFS, if it does not exist.
 - hdfs_ansible:
-    webhdfs_http_url: http://sandbox.hortonworks.com:50070
-    hdfsPath: /tmp/some-new-folder
+    webhdfs_url: http://sandbox.hortonworks.com:50070
+    hdfs_path: /tmp/some-new-folder
     command: mkdir
 
-# uploads a local file to hdfs
+# Uploads a local file in the HDFS directory.
 - hdfs_ansible:
-    webhdfs_http_url: http://sandbox.hortonworks.com:50070
-    hdfsPath: /tmp
-    localPath: /home/sayed/oozie-document-sla-retrieval.adoc
+    webhdfs_url: http://sandbox.hortonworks.com:50070
+    hdfs_path: /tmp
+    local_path: /home/sayed/oozie-document-sla-retrieval.adoc
     command: put
 '''
 
 RETURN = '''
 msg:
-    description: The output message that the sample module generates.
+    description: The output message that the hdfs_module generates.
 '''
 
+import hashlib
 import os
 from ansible.module_utils.basic import AnsibleModule
 from hdfs import InsecureClient
@@ -129,15 +117,15 @@ from hdfs import HdfsError
 
 def list_files(module, hdfs_client, hdfs_path=None, recursive=False):
     """
-    List all the files in the hdfs path.
-    :param module: ansible module
-    :param hdfs_client: hdfs client
-    :param hdfs_path: hdfs path
+    List all the files in the HDFS path.
+    :param module: Ansible module
+    :param hdfs_client: HDFS client
+    :param hdfs_path: HDFS path
     :param recursive: if recursive is set to True then recursively lists all subdirectories.
-    :return: list of all the files in the given hdfs path.
+    :return: list of all the files in the given HDFS path.
     """
     if hdfs_path is None:
-         module.fail_json(msg="hdfs path should not be empty.")
+         module.fail_json(msg="HDFS path should not be empty.")
 
     if path_exists(module, hdfs_client, hdfs_path):
         if recursive is False:
@@ -158,16 +146,23 @@ def list_files(module, hdfs_client, hdfs_path=None, recursive=False):
 
             return files
 
+def _path_exists(hdfs_client, hdfs_path=None):
+    try:
+        if hdfs_client.status(hdfs_path):
+            return hdfs_path
+    except:
+        return False
+
 def path_exists(module, hdfs_client, hdfs_path=None):
     """
-    Checks if the hdfs path exists.
-    :param module: ansible module
-    :param hdfs_client: hdfs client
-    :param hdfs_path: hdfs path
-    :return: returns hdfs path if path exists, False otherwise.
+    Checks if the HDFS path exists.
+    :param module: Ansible module
+    :param hdfs_client: HDFS client
+    :param hdfs_path: HDFS path
+    :return: False if the path exists, otherwise it returns True.
     """
     if hdfs_path is None:
-        module.fail_json(msg="hdfs path should not be empty.")
+        module.fail_json(msg="HDFS path should not be empty.")
 
     try:
         if hdfs_client.status(hdfs_path):
@@ -177,37 +172,37 @@ def path_exists(module, hdfs_client, hdfs_path=None):
 
 def remove(module, hdfs_client, hdfs_path=None, recursive=False):
     """
-    Removes file or directory if the hdfs path exists.
-    :param module: ansible module
-    :param hdfs_client: hdfs client
-    :param hdfs_path: hdfs path
-    :param recursive: if recursive is set to True then recursively delete's subdirectories.
-    :return: True if success, False otherwise.
+    Removes a file or a directory if the HDFS path exists.
+    :param module: Ansible module
+    :param hdfs_client: HDFS client
+    :param hdfs_path: HDFS path
+    :param recursive: if recursive is set to True, it recursively delete's subdirectories.
+    :return: False if the remove operation is not successful, otherwise it returns True.
     """
     if hdfs_path is None:
-        module.fail_json(msg="hdfs path should not be empty.")
+        module.fail_json(msg="HDFS path should not be empty.")
 
     if path_exists(module, hdfs_client, hdfs_path):
         try:
             success = hdfs_client.delete(hdfs_path, recursive=recursive)
             if success is True:
                 return True
-        except HdfsError:
+        except (HdfsError, Exception):
             return False
     else:
-        return False
+        module.fail_json(msg="{0} - path doesn't exist".format(hdfs_path))
 
 def change_owner(module, hdfs_client, hdfs_path=None, owner=None):
     """
-    Sets owner of the hdfs file or directory.
-    :param module: ansible module
-    :param hdfs_client: hdfs client
-    :param hdfs_path: hdfs path
+    Sets the owner of an HDFS file or directory.
+    :param module: Ansible module
+    :param hdfs_client: HDFS client
+    :param hdfs_path: HDFS path
     :param owner: owner
-    :return: True if owner is changed, False otherwise.
+    :return: False if the owner of the HDFS file or directory is not changed, otherwise it returns True.
     """
     if hdfs_path is None:
-        module.fail_json(msg="hdfs path should not be empty.")
+        module.fail_json(msg="HDFS path should not be empty.")
     if owner is None:
         module.fail_json(msg="owner should not be empty.")
 
@@ -216,18 +211,20 @@ def change_owner(module, hdfs_client, hdfs_path=None, owner=None):
         hdfs_client.set_owner(hdfs_path, owner=owner)
         new_owner = hdfs_client.status(hdfs_path)["owner"]
         return (current_owner != new_owner)
+    else:
+        module.fail_json(msg="{0} - path doesn't exist".format(hdfs_path))
 
 def change_group(module, hdfs_client, hdfs_path=None, group=None):
     """
-    Sets group of the hdfs file or directory.
-    :param module: ansible module
-    :param hdfs_client: hdfs client
-    :param hdfs_path: hdfs path
+    Sets the group of an HDFS file or directory.
+    :param module: Ansible module
+    :param hdfs_client: HDFS client
+    :param hdfs_path: HDFS path
     :param group: group
-    :return: True if group is changed, False otherwise.
+    :return: False if the group of the HDFS file or directory is not changed, otherwise it returns True.
     """
     if hdfs_path is None:
-        module.fail_json(msg="hdfs path should not be empty.")
+        module.fail_json(msg="HDFS path should not be empty.")
     if group is None:
         module.fail_json(msg="group should not be empty.")
 
@@ -236,18 +233,20 @@ def change_group(module, hdfs_client, hdfs_path=None, group=None):
         hdfs_client.set_owner(hdfs_path, group=group)
         new_group = hdfs_client.status(hdfs_path)["group"]
         return (current_group != new_group)
+    else:
+        module.fail_json(msg="{0} - path doesn't exist".format(hdfs_path))
 
 def change_permission(module, hdfs_client, hdfs_path=None, permission=None):
     """
-    Sets permissions of the hdfs file or directory.
-    :param module: ansible module
-    :param hdfs_client: hdfs client
-    :param hdfs_path: hdfs path
+    Sets the permissions of an HDFS file or directory.
+    :param module: Ansible module
+    :param hdfs_client: HDFS client
+    :param hdfs_path: HDFS path
     :param permission: permission (in octal string)
-    :return: True if permission is changed, False otherwise.
+    :return: False if the permission of the HDFS file or directory is not changed, otherwise it returns True.
     """
     if hdfs_path is None:
-        module.fail_json(msg="hdfs path should not be empty.")
+        module.fail_json(msg="HDFS path should not be empty.")
     if permission is None:
         module.fail_json(msg="permission should not be empty.")
 
@@ -256,103 +255,160 @@ def change_permission(module, hdfs_client, hdfs_path=None, permission=None):
         hdfs_client.set_permission(hdfs_path, permission=permission)
         new_permission = hdfs_client.acl_status(hdfs_path)["permission"]
         return (current_permission != new_permission)
+    else:
+        module.fail_json(msg="{0} - path doesn't exist".format(hdfs_path))
 
-def upload_localfile(module, hdfs_client, hdfs_path=None, local_path=None):
-    """
-    Uploads a local file into hdfs directory.
-    :param module: ansible module
-    :param hdfs_client: hdfs client
-    :param hdfs_path: hdfs path
-    :param local_path: local file path
-    :return: uploaded hdfs path if operation is success, else False.
-    """
-    if hdfs_path is None:
-        module.fail_json(msg="hdfs path should not be empty.")
-    if local_path is None:
-        module.fail_json(msg="local path should not be empty.")
 
-    if path_exists(module, hdfs_client, hdfs_path):
+def checksum_from_local_file(file_name):
+    hash_md5 = hashlib.md5()
+    chunk_size = 64 * 1024
+    with open(file_name, "rb") as file:
+        for chunk in iter(lambda: file.read(chunk_size), b""):
+            hash_md5.update(chunk)
+    return hash_md5.hexdigest()
+
+def checksum_from_hdfs_file(hdfs_client, hdfs_path):
+
+    status_hdfs = hdfs_client.status(hdfs_path, strict=False)
+    if status_hdfs is not None and status_hdfs['type'] == 'FILE':
+        chunk_size = 64 * 1024
+        hash_md5 = hashlib.md5()
+        with hdfs_client.read(hdfs_path) as file:
+            for chunk in iter(lambda: file.read(chunk_size), b""):
+                hash_md5.update(chunk)
+        return hash_md5.hexdigest()
+    raise HdfsError("{0} provided is not file.".format(hdfs_path))
+
+def _upload_localfile(hdfs_client, hdfs_path=None, local_path=None):
+
+    status_local = os.path.isfile(local_path)
+    status_hdfs = hdfs_client.status(hdfs_path, strict=False)
+    if status_hdfs is not None and status_hdfs['type'] == 'DIRECTORY' and status_local is True:
         file_name = local_path.split("/")[-1]
         files_list = hdfs_client.list(hdfs_path)
         if file_name not in files_list:
-            uploaded_path = hdfs_client.upload(hdfs_path=hdfs_path, local_path=local_path)
-            status = uploaded_path
+            hdfs_client.upload(hdfs_path=hdfs_path, local_path=local_path)
+            return True
         else:
-            status = False
+            hdfs_file_path = os.path.join(hdfs_path, file_name)
+            checksum_hdfs_file = checksum_from_hdfs_file(hdfs_client, hdfs_file_path)
+            checksum_local_file = checksum_from_local_file(local_path)
 
-        return status
+            if str(checksum_hdfs_file) == str(checksum_local_file):
+                # module.fail_json(msg="content of local file {0}, and hdfs file {1} is same.".format(local_path, hdfs_path))
+                print "content of local file {0}, and hdfs file {1} is same.".format(local_path, hdfs_file_path)
+            else:
+                hdfs_client.upload(hdfs_path=hdfs_path, local_path=local_path, overwrite=True)
+                return True
+    else:
+        print "either HDFS path provided is not a directory or local file provided is a directory"
 
-def status(module, hdfs_client, hdfs_path):
+def upload_localfile(module, hdfs_client, hdfs_path=None, local_path=None):
     """
-    Information of the hdfs path.
-    :param module: ansible module
-    :param hdfs_client: hdfs client
-    :param hdfs_path: hdfs path
-    :return: status of the hdfs path
-    """
-    if hdfs_path is None:
-        module.fail_json(msg="hdfs path should not be empty.")
-
-    if path_exists(module, hdfs_client, hdfs_path):
-        hdfs_status = hdfs_client.status(hdfs_path)
-        return hdfs_status
-
-def make_directory(module, hdfs_client, hdfs_path):
-    """
-    Creates a new file or directory in hdfs if not exists
-    :param module: ansible module
-    :param hdfs_client: hdfs client
-    :param hdfs_path: hdfs path
-    :return: False if directory already exists, newly created hdfs path otherwise.
+    Uploads a local file in the HDFS directory.
+    :param module: Ansible module
+    :param hdfs_client: HDFS client
+    :param hdfs_path: HDFS path
+    :param local_path: local file path
+    :return: False if the uploaded operation is not successful, otherwise it returns the HDFS path..
     """
     if hdfs_path is None:
-        module.fail_json(msg="hdfs path should not be empty.")
+        module.fail_json(msg="HDFS path should not be empty.")
+    if local_path is None:
+        module.fail_json(msg="local path should not be empty.")
+
+    status_local = os.path.isfile(local_path)
+    status_hdfs = hdfs_client.status(hdfs_path, strict=False)
+
+    if status_hdfs is not None and status_hdfs['type'] == 'DIRECTORY' and status_local is True:
+
+        file_name = local_path.split("/")[-1]
+        files_list = hdfs_client.list(hdfs_path)
+        if file_name not in files_list:
+            hdfs_client.upload(hdfs_path=hdfs_path, local_path=local_path)
+            return True
+        else:
+            checksum_hdfs_file = checksum_from_hdfs_file(hdfs_client, hdfs_path)
+            checksum_local_file = checksum_from_local_file(local_path)
+            if str(checksum_hdfs_file) == str(checksum_local_file):
+                module.fail_json(msg="content of local file {0}, and hdfs file {1} is same.".format(local_path, hdfs_path))
+            else:
+                try:
+                    hdfs_client.upload(hdfs_path=hdfs_path, local_path=local_path, overwrite=True)
+                    return True
+                except Exception as e:
+                    module.fail_json(msg="{0}.".format(e))
+    else:
+        module.fail_json(msg="either HDFS path provided is not a directory or local file provided is a directory")
+
+def create_directory(module, hdfs_client, hdfs_path):
+    """
+    Creates a new directory in the HDFS, if it does not exist.
+    :param module: Ansible module
+    :param hdfs_client: HDFS client
+    :param hdfs_path: HDFS path
+    :return: False if the directory already exists, otherwise it creates the directory and returns True.
+    """
+    if hdfs_path is None:
+        module.fail_json(msg="HDFS path should not be empty.")
 
     # remove "/" at end, if present
     hdfs_path = hdfs_path[:len(hdfs_path)-1] if hdfs_path.endswith("/") else hdfs_path
 
-    # collect dir_name and parent directory path from the hdfs path
+    # collect dir_name and parent directory path from the HDFS path
     dir_name = hdfs_path.split("/")[-1]
     parent_dir = "/".join(hdfs_path.split("/")[:-1])
-
-    # list all the files
     files_list = hdfs_client.list(parent_dir)
+    # checks if directory already exists
     if dir_name in files_list:
         return False
     else:
         hdfs_client.makedirs(hdfs_path)
-        return "new directory created."
+        return True
+
+def status(module, hdfs_client, hdfs_path):
+    """
+    The status of the HDFS file or directory.
+    :param module: Ansible module
+    :param hdfs_client: HDFS client
+    :param hdfs_path: HDFS path
+    :return: Status of the HDFS file or directory.
+    """
+    if hdfs_path is None:
+        module.fail_json(msg="HDFS path should not be empty.")
+
+    if path_exists(module, hdfs_client, hdfs_path):
+        hdfs_status = hdfs_client.status(hdfs_path)
+        return hdfs_status
+    else:
+        module.exit_json(changed=False, msg="{0} - Path doesn't exist".format(hdfs_path))
 
 def run(module, hdfs_client):
     """
-    Run's the hdfs ansible module. Performs operations with the given HDFS command.
-    :param module: ansible module
-    :param hdfs_client: hdfs client
+    Run's the HDFS Ansible module operations and performs operations with the given HDFS command.
+    :param module: Ansible module
+    :param hdfs_client: HDFS client
     """
     params = module.params
     command = params['command']
     recurse = params['recurse']
-    hdfs_path = params["hdfsPath"]
+    hdfs_path = params["path"]
     owner = params["owner"]
     group = params["group"]
     permission = params["permission"]
-    local_path = params["localPath"]
+    local_path = params["local_path"]
 
-    if command == "ls":
-        hdfs_files = list_files(module, hdfs_client, hdfs_path=hdfs_path, recursive=recurse)
-        module.exit_json(changed=False, msg=hdfs_files)
-    elif command == "exists":
-        path = path_exists(module, hdfs_client, hdfs_path=hdfs_path)
-        if path is False:
-            module.exit_json(changed=False, msg="{0} - No such file or directory".format(hdfs_path))
-        else:
-            module.exit_json(changed=False, msg="{0}".format(hdfs_path))
-    elif command == "rm":
+    if command == "rm":
         result = remove(module, hdfs_client, hdfs_path=hdfs_path, recursive=recurse)
         if result == False:
             module.exit_json(changed=False, msg="{0} - No such file or directory".format(hdfs_path))
         else:
             module.exit_json(changed=True, msg="Deleted {0}".format(hdfs_path))
+    ## delete
+    elif command == "ls":
+        hdfs_files = list_files(module, hdfs_client, hdfs_path=hdfs_path, recursive=recurse)
+        module.exit_json(changed=False, msg=hdfs_files)
+    ##
     elif command == "chown":
         result = change_owner(module, hdfs_client, hdfs_path=hdfs_path, owner=owner)
         if result == False:
@@ -378,42 +434,49 @@ def run(module, hdfs_client):
         else:
             module.exit_json(changed=True, msg="uploaded: {0} ".format(uploaded))
     elif command == "mkdir":
-        created_dir = make_directory(module, hdfs_client, hdfs_path)
+        created_dir = create_directory(module, hdfs_client, hdfs_path)
         if created_dir == False:
-            module.exit_json(changed=False, msg="{0} directory exists.".format(local_path))
+            module.exit_json(changed=False, msg="{0} directory exists.".format(hdfs_path))
         else:
-            module.exit_json(changed=True, msg="{0} ".format(created_dir))
+            module.exit_json(changed=True, msg="{0}".format(created_dir))
 
 def main():
     """
-    main entry point of the execution.
+    Main entry point of the execution.
     """
-    fields = {
-        "webhdfs_http_url": {"required": True, "type": "str"},
-        "hdfsPath": {"required": True, "type": "str"},
-        "command": {"required": True,
-                    "choices": ["ls", "exists", "rm", "chown", "chgrp", "chmod", "put", "mkdir"],
-                    "type": "str"},
-        "recurse": {"default": False, "type": "bool"},
-        "localPath": {"required": False, "type": "str"},
-        "owner": {"required": False, "type": "str"},
-        "group": {"required": False, "type": "str"},
-        "permission": {"required": False, "type": "str"},
-    }
+    hdfs_client = InsecureClient('http://sandbox.hortonworks.com:50070')
 
-    module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
+    # print checksum_from_local_file("/home/sayed/kernel_cleaner.sh")
+    # print checksum_from_hdfs_file(hdfs_client, "/tmp/kernel_cleaner.sh")
+    # print checksum_from_hdfs_file(hdfs_client, "/tmp/GRE-1454.001.patch")
+    _upload_localfile(hdfs_client, "/tmp/", "/home/sayed/kernel_cleaner.sh")
 
-    try:
-        params = module.params
-        webhdfs_url = params["webhdfs_http_url"]
-
-        hdfs_client = InsecureClient(webhdfs_url)
-        # hdfs_client = KerberosClient(webhdfs_url)
-        run(module, hdfs_client)
-
-    except Exception as e:
-        module.fail_json(msg='Unable to init WEB HDFS client for %s: %s' % (
-            params['webhdfs_http_url'], str(e)))
+    # fields = {
+    #     "webhdfs_url": {"required": True, "type": "str"},
+    #     "path": {"required": True, "type": "str"},
+    #     "command": {"required": True,
+    #                 "choices": ["ls", "rm", "chown", "chgrp", "chmod", "put", "mkdir"],
+    #                 "type": "str"},
+    #     "recurse": {"default": False, "type": "bool"},
+    #     "local_path": {"required": False, "type": "str"},
+    #     "owner": {"required": False, "type": "str"},
+    #     "group": {"required": False, "type": "str"},
+    #     "permission": {"required": False, "type": "str"},
+    # }
+    #
+    # module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
+    #
+    # try:
+    #     params = module.params
+    #     webhdfs_url = params["webhdfs_url"]
+    #
+    #     hdfs_client = InsecureClient(webhdfs_url)
+    #     # hdfs_client = KerberosClient(webhdfs_url)
+    #     run(module, hdfs_client)
+    #
+    # except Exception as e:
+    #     module.fail_json(msg='Unable to init WEB HDFS client for %s: %s' % (
+    #         params['webhdfs_url'], str(e)))
 
 if __name__ == '__main__':
     main()
