@@ -2,11 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f2214dad-e8a3-4498-ba86-ffe083226f80" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/library/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/library/tests/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/library/test_hdfs_ansible.py" afterPath="$PROJECT_DIR$/src/library/tests/test_hdfs_ansible.py" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/library/dummy1" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/library/dummy2" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/library/dummy3" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/library/dummy4" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/library/hdfs_ansible.py" afterPath="$PROJECT_DIR$/src/library/hdfs_operations.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/library/tests/test_hdfs_ansible.py" afterPath="$PROJECT_DIR$/src/library/tests/test_hdfs_operations.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/library/hdfs_ansible.py" afterPath="$PROJECT_DIR$/src/library/hdfs_ansible.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/play.yml" afterPath="$PROJECT_DIR$/src/play.yml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/play_apt.yml" afterPath="$PROJECT_DIR$/src/play_apt.yml" />
     </list>
@@ -19,35 +21,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="hdfs_ansible.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/library/hdfs_ansible.py">
+      <file leaf-file-name="hdfs_operations.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/library/hdfs_operations.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="379">
-              <caret line="298" column="111" lean-forward="false" selection-start-line="298" selection-start-column="111" selection-end-line="298" selection-end-column="111" />
+            <state relative-caret-position="220">
+              <caret line="433" column="5" lean-forward="true" selection-start-line="433" selection-start-column="5" selection-end-line="433" selection-end-column="5" />
               <folding>
-                <element signature="e#3560#3574#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="play_apt.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/play_apt.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="78" column="22" lean-forward="false" selection-start-line="78" selection-start-column="17" selection-end-line="78" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test_hdfs_ansible.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/library/tests/test_hdfs_ansible.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="441">
-              <caret line="140" column="0" lean-forward="true" selection-start-line="140" selection-start-column="0" selection-end-line="140" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#9#0" expanded="true" />
+                <element signature="e#4119#4133#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -76,11 +56,18 @@
       <find>make</find>
       <find>make_de</find>
       <find>make_</find>
-      <find>ansible</find>
-      <find>hdfs</find>
-      <find>create</find>
       <find>creates</find>
       <find>create_directory</find>
+      <find>content</find>
+      <find>create</find>
+      <find>local_path=</find>
+      <find>hdfs_ansible</find>
+      <find>dumm</find>
+      <find>dummy2</find>
+      <find>dummy</find>
+      <find>_status</find>
+      <find>hdfs</find>
+      <find>ansible</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -102,18 +89,23 @@
         <option value="$PROJECT_DIR$/src/play_yum.yml" />
         <option value="$PROJECT_DIR$/README (copy).md" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/src/play_apt.yml" />
-        <option value="$PROJECT_DIR$/src/play.yml" />
+        <option value="$PROJECT_DIR$/src/library/dummy1" />
         <option value="$PROJECT_DIR$/src/library/tests/test_hdfs_ansible.py" />
         <option value="$PROJECT_DIR$/src/library/hdfs_ansible.py" />
+        <option value="$PROJECT_DIR$/src/library/hdfs_file.py" />
+        <option value="$PROJECT_DIR$/src/library/tests/test_hdfs_file.py" />
+        <option value="$PROJECT_DIR$/src/library/tests/test_hdfs_operations.py" />
+        <option value="$PROJECT_DIR$/src/library/hdfs_operations.py" />
+        <option value="$PROJECT_DIR$/src/play_apt.yml" />
+        <option value="$PROJECT_DIR$/src/play.yml" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="641" />
-    <option name="y" value="387" />
-    <option name="width" value="933" />
-    <option name="height" value="1076" />
+    <option name="x" value="51" />
+    <option name="y" value="-4" />
+    <option name="width" value="935" />
+    <option name="height" value="1084" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -149,13 +141,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="library" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="ansible" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ansible" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="library" type="462c0819:PsiDirectoryNode" />
-              <item name="tests" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -190,7 +175,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.hdfs_ansible">
+  <component name="RunManager">
     <configuration name="Nosetests in test_fetch_resources.py" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -206,7 +191,7 @@
       <option name="_new_target" value="&quot;$PROJECT_DIR$/demo/library/test_fetch_resources.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
     </configuration>
-    <configuration name="Nosetests in test_hdfs_ansible.py" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
+    <configuration name="Nosetests in test_hdfs_operations.py" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -218,7 +203,7 @@
       <module name="ansible" />
       <option name="_new_regexPattern" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/src/library/tests/test_hdfs_ansible.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/src/library/tests/test_hdfs_operations.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
     </configuration>
     <configuration name="hdfs_ansible" type="PythonConfigurationType" factoryName="Python" temporary="true">
@@ -233,7 +218,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="ansible" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/library/hdfs_ansible.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/library/hdfs_operations.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -250,22 +235,22 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="ansible" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/library/tests/test_hdfs_ansible.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/library/tests/test_hdfs_operations.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
     <list size="4">
       <item index="0" class="java.lang.String" itemvalue="Python tests.Nosetests in test_fetch_resources.py" />
-      <item index="1" class="java.lang.String" itemvalue="Python tests.Nosetests in test_hdfs_ansible.py" />
+      <item index="1" class="java.lang.String" itemvalue="Python tests.Nosetests in test_hdfs_operations.py" />
       <item index="2" class="java.lang.String" itemvalue="Python.test_hdfs_ansible" />
       <item index="3" class="java.lang.String" itemvalue="Python.hdfs_ansible" />
     </list>
     <recent_temporary>
       <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="Python.hdfs_ansible" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Nosetests in test_hdfs_ansible.py" />
-        <item index="2" class="java.lang.String" itemvalue="Python.test_hdfs_ansible" />
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Nosetests in test_hdfs_operations.py" />
+        <item index="1" class="java.lang.String" itemvalue="Python.test_hdfs_ansible" />
+        <item index="2" class="java.lang.String" itemvalue="Python.hdfs_ansible" />
         <item index="3" class="java.lang.String" itemvalue="Python tests.Nosetests in test_fetch_resources.py" />
       </list>
     </recent_temporary>
@@ -284,49 +269,50 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Nosetests_in_test_hdfs_ansible_py - 2018.05.30 at 11h 17m 33s.xml">
-      <configuration name="Nosetests in test_hdfs_ansible.py" configurationId="tests" />
+    <history-entry file="Nosetests_in_test_hdfs_file_py - 2018.06.04 at 14h 32m 29s.xml">
+      <configuration name="Nosetests in test_hdfs_file.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_in_test_hdfs_ansible_py - 2018.05.30 at 11h 33m 18s.xml">
-      <configuration name="Nosetests in test_hdfs_ansible.py" configurationId="tests" />
+    <history-entry file="Nosetests_in_test_hdfs_operations_py - 2018.06.04 at 14h 35m 23s.xml">
+      <configuration name="Nosetests in test_hdfs_operations.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_in_test_hdfs_ansible_py - 2018.05.30 at 11h 44m 18s.xml">
-      <configuration name="Nosetests in test_hdfs_ansible.py" configurationId="tests" />
+    <history-entry file="Nosetests_in_test_hdfs_operations_py - 2018.06.04 at 14h 36m 29s.xml">
+      <configuration name="Nosetests in test_hdfs_operations.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_in_test_hdfs_ansible_py - 2018.05.30 at 11h 51m 23s.xml">
-      <configuration name="Nosetests in test_hdfs_ansible.py" configurationId="tests" />
+    <history-entry file="Nosetests_in_test_hdfs_operations_py - 2018.06.04 at 14h 37m 05s.xml">
+      <configuration name="Nosetests in test_hdfs_operations.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_in_test_hdfs_ansible_py - 2018.05.30 at 11h 51m 50s.xml">
-      <configuration name="Nosetests in test_hdfs_ansible.py" configurationId="tests" />
+    <history-entry file="Nosetests_in_test_hdfs_operations_py - 2018.06.04 at 14h 42m 11s.xml">
+      <configuration name="Nosetests in test_hdfs_operations.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_in_test_hdfs_ansible_py - 2018.05.30 at 11h 52m 13s.xml">
-      <configuration name="Nosetests in test_hdfs_ansible.py" configurationId="tests" />
+    <history-entry file="Nosetests_in_test_hdfs_operations_py - 2018.06.04 at 14h 43m 35s.xml">
+      <configuration name="Nosetests in test_hdfs_operations.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_in_test_hdfs_ansible_py - 2018.05.30 at 12h 33m 53s.xml">
-      <configuration name="Nosetests in test_hdfs_ansible.py" configurationId="tests" />
+    <history-entry file="Nosetests_in_test_hdfs_operations_py - 2018.06.04 at 14h 44m 21s.xml">
+      <configuration name="Nosetests in test_hdfs_operations.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_in_test_hdfs_ansible_py - 2018.05.30 at 14h 59m 29s.xml">
-      <configuration name="Nosetests in test_hdfs_ansible.py" configurationId="tests" />
+    <history-entry file="Nosetests_in_test_hdfs_operations_py - 2018.06.04 at 14h 45m 59s.xml">
+      <configuration name="Nosetests in test_hdfs_operations.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_in_test_hdfs_ansible_py - 2018.05.30 at 15h 09m 45s.xml">
-      <configuration name="Nosetests in test_hdfs_ansible.py" configurationId="tests" />
+    <history-entry file="Nosetests_in_test_hdfs_operations_py - 2018.06.04 at 14h 46m 21s.xml">
+      <configuration name="Nosetests in test_hdfs_operations.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_in_test_hdfs_ansible_py - 2018.05.30 at 15h 09m 48s.xml">
-      <configuration name="Nosetests in test_hdfs_ansible.py" configurationId="tests" />
+    <history-entry file="Nosetests_in_test_hdfs_operations_py - 2018.06.04 at 14h 48m 55s.xml">
+      <configuration name="Nosetests in test_hdfs_operations.py" configurationId="tests" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="641" y="387" width="1871" height="1092" extended-state="6" />
+    <frame x="51" y="-4" width="1869" height="1084" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20460778" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2495886" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37591624" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37591624" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36544502" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3947644" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -334,7 +320,6 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -347,15 +332,15 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32984293" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3748691" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25233132" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37591624" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31623036" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20460778" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
@@ -364,17 +349,17 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="28" />
+      <option name="time" value="35" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/library/hdfs_ansible.py">
+    <entry file="file://$PROJECT_DIR$/src/library/hdfs_operations.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1368">
           <caret line="78" column="26" lean-forward="false" selection-start-line="78" selection-start-column="26" selection-end-line="78" selection-end-column="26" />
           <folding>
-            <element signature="e#3560#3574#0" expanded="true" />
+            <element signature="e#4119#4133#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -461,17 +446,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/library/dummy3">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/library/dummy1">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -497,6 +476,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="215">
           <caret line="2311" column="8" lean-forward="false" selection-start-line="2311" selection-start-column="8" selection-end-line="2311" selection-end-column="8" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -534,38 +514,46 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/library/tests/test_hdfs_ansible.py">
+    <entry file="file://$PROJECT_DIR$/src/library/dummy1">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="140" column="0" lean-forward="true" selection-start-line="140" selection-start-column="0" selection-end-line="140" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/library/tests/test_hdfs_operations.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="23" lean-forward="false" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/play.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/play_apt.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
-          <caret line="78" column="22" lean-forward="false" selection-start-line="78" selection-start-column="17" selection-end-line="78" selection-end-column="22" />
+          <caret line="16" column="21" lean-forward="false" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/library/hdfs_ansible.py">
+    <entry file="file://$PROJECT_DIR$/src/play.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
-          <caret line="298" column="111" lean-forward="false" selection-start-line="298" selection-start-column="111" selection-end-line="298" selection-end-column="111" />
+        <state relative-caret-position="292">
+          <caret line="20" column="21" lean-forward="false" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/library/hdfs_operations.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="433" column="5" lean-forward="true" selection-start-line="433" selection-start-column="5" selection-end-line="433" selection-end-column="5" />
           <folding>
-            <element signature="e#3560#3574#0" expanded="true" />
+            <element signature="e#4119#4133#0" expanded="true" />
           </folding>
         </state>
       </provider>
