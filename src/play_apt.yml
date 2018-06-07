@@ -13,41 +13,41 @@
         name: hdfs
         state: latest
 
-    - name: sets owner of the hdfs file or directory
-      hdfs_operations:
-        webhdfs_url: http://sandbox.hortonworks.com:50070
-        path: /tmp/kernel_cleaner.sh
-        command: chown
-        owner: sayed
-      register: result_chown
-
-    - name: dump output for owner
-      debug:
-        msg: '{{ result_chown }}'
+#    - name: sets owner of the hdfs file or directory
+#      hdfs_operations:
+#        webhdfs_url: http://sandbox.hortonworks.com:50070
+#        path: /tmp/kernel_cleaner.sh
+#        command: chown
+#        owner: solr
+#      register: result_chown
+#
+#    - name: dump output for owner
+#      debug:
+#        msg: '{{ result_chown }}'
 
 #    - name: sets group of the hdfs file or directory
 #      hdfs_operations:
 #        webhdfs_url: http://sandbox.hortonworks.com:50070
 #        path: /tmp/kernel_cleaner.sh
 #        command: chgrp
-#        group: supergroup
+#        group: sayed
 #      register: result_chgrp
 #
 #    - name: dump output for group
 #      debug:
 #        msg: '{{ result_chgrp }}'
 
-#    - name: sets permissions of the hdfs file or directory
-#      hdfs_operations:
-#        webhdfs_url: http://sandbox.hortonworks.com:50070
-#        path: /tmp/kernel_cleaner.sh
-#        command: chmod
-#        permission: "0777"
-#      register: result_chmod
-#
-#    - name: dump output for permission
-#      debug:
-#        msg: '{{ result_chmod }}'
+    - name: sets permissions of the hdfs file or directory
+      hdfs_operations:
+        webhdfs_url: http://sandbox.hortonworks.com:50070
+        path: /tmp/kernel_cleaner.sh
+        command: chmod
+        permission: "0667"
+      register: result_chmod
+
+    - name: dump output for permission
+      debug:
+        msg: '{{ result_chmod }}'
 
 #    - name: creates new directory in hdfs if not exists
 #      hdfs_operations:
